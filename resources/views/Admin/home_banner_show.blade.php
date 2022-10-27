@@ -26,7 +26,7 @@
 
                                 <div class="mb-4">
                                     <label class="form-label">Name *</label>
-                                    <input type="text" class="form-control" name="banner_title" value="{{ $page_data->banner_person_name }}">
+                                    <input type="text" class="form-control" name="banner_person_name" value="{{ $page_data->banner_person_name }}">
                                 </div>
 
                                 <div class="mb-4">
