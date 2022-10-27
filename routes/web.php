@@ -3,18 +3,63 @@
 use Illuminate\Support\Facades\Route;
 
 
+// Front Controller Route
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\AboutController;
+
+
+
+
+
+
+
+
+
 // Admin Controller Route
 
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
-use App\Http\Controllers\Admin\AdminprofileController;
+use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminHomePageController;
 
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+/* Front route */
+
+// home page route
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// about page route
+
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,7 +81,9 @@ Route::post('admin/reset-password-submit', [AdminLoginController::class, 'reset_
 Route::get('admin/edit-profile', [AdminProfileController::class, 'index'])->name('admin_profile')->middleware('admin:admin');
 Route::post('admin/edit-profile-submit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit')->middleware('admin:admin');
 
+// Admin Banner route
 
+Route::get('admin/home-banner', [AdminHomePageController::class, 'index'])->name('admin_home_banner')->middleware('admin:admin');
 
 
 
