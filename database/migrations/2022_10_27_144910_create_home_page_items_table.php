@@ -22,6 +22,24 @@ return new class extends Migration
             $table->string('banner_button_text')->nullable();
             $table->string('banner_button_url')->nullable();
             $table->string('banner_photo');
+            $table->string('about_subtitle')->nullable();
+            $table->string('about_title');
+            $table->text('about_description')->nullable();
+            $table->string('about_person_name')->nullable();
+            $table->string('about_person_phone')->nullable();
+            $table->string('about_person_email')->nullable();
+            $table->string('about_icon1')->nullable();
+            $table->string('about_icon1_url')->nullable();
+            $table->string('about_icon2')->nullable();
+            $table->string('about_icon2_url')->nullable();
+            $table->string('about_icon3')->nullable();
+            $table->string('about_icon3_url')->nullable();
+            $table->string('about_icon4')->nullable();
+            $table->string('about_icon4_url')->nullable();
+            $table->string('about_icon5')->nullable();
+            $table->string('about_icon5_url')->nullable();
+            $table->string('about_photo');
+            $table->string('about_status');
             $table->timestamps();
         });
     }

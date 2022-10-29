@@ -81,11 +81,17 @@ Route::post('admin/reset-password-submit', [AdminLoginController::class, 'reset_
 Route::get('admin/edit-profile', [AdminProfileController::class, 'index'])->name('admin_profile')->middleware('admin:admin');
 Route::post('admin/edit-profile-submit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit')->middleware('admin:admin');
 
+/* Admin route Home Page*/
+
 // Admin Banner route
 
-Route::get('admin/home-banner', [AdminHomePageController::class, 'index'])->name('admin_home_banner')->middleware('admin:admin');
+Route::get('admin/home-banner', [AdminHomePageController::class, 'banner'])->name('admin_home_banner')->middleware('admin:admin');
+Route::post('admin/home-banner-update', [AdminHomePageController::class, 'banner_update'])->name('admin_home_banner_update')->middleware('admin:admin');
 
+// Admin About route
 
+Route::get('admin/home-about', [AdminHomePageController::class, 'about'])->name('admin_home_about')->middleware('admin:admin');
+Route::post('admin/home-about-update', [AdminHomePageController::class, 'about_update'])->name('admin_home_about_update')->middleware('admin:admin');
 
 
 

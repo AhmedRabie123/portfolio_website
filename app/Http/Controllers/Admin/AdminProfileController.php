@@ -35,19 +35,19 @@ class AdminProfileController extends Controller
             ]);
 
             $admin_data->password = Hash::make($request->password);
-           // dd($request->password);
+            // dd($request->password);
         }
 
 
         if ($request->hasFile('photo')) {
 
-            if (file_exists(public_path('uploads/' . $admin_data->photo)) && $admin_data->photo != NULL) {
-                unlink(public_path('uploads/' . $admin_data->photo));
-              }
-
             $request->validate([
                 'photo' => 'image|mimes:jpg,png,jpeg,svg,gif'
             ]);
+
+            if (file_exists(public_path('uploads/' . $admin_data->photo)) && $admin_data->photo != NULL) {
+                unlink(public_path('uploads/' . $admin_data->photo));
+            }
 
             $now = time();
             $ext = $request->file('photo')->extension();
@@ -56,7 +56,7 @@ class AdminProfileController extends Controller
             $admin_data->photo = $final_name;
         }
 
-    
+
 
         $admin_data->name = $request->name;
         $admin_data->email = $request->email;
