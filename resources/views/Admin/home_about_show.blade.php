@@ -1,6 +1,6 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Edit Home About')
+@section('heading', 'Edit Home Page About')
 
 @section('main_content')
 

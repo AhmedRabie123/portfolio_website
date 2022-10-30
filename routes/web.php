@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminHomePageController;
+use App\Http\Controllers\Admin\AdminSkillController;
 
 
 
@@ -93,5 +94,23 @@ Route::post('admin/home-banner-update', [AdminHomePageController::class, 'banner
 Route::get('admin/home-about', [AdminHomePageController::class, 'about'])->name('admin_home_about')->middleware('admin:admin');
 Route::post('admin/home-about-update', [AdminHomePageController::class, 'about_update'])->name('admin_home_about_update')->middleware('admin:admin');
 
+// Admin skill route
+
+Route::get('admin/home-skill', [AdminHomePageController::class, 'skill'])->name('admin_home_skill')->middleware('admin:admin');
+Route::post('admin/home-skill-update', [AdminHomePageController::class, 'skill_update'])->name('admin_home_skill_update')->middleware('admin:admin');
+
+// Admin skill create route
+
+Route::get('admin/skill-show', [AdminSkillController::class, 'index'])->name('admin_skill_show')->middleware('admin:admin');
+Route::get('admin/skill-create', [AdminSkillController::class, 'skill_create'])->name('admin_skill_create')->middleware('admin:admin');
+Route::post('admin/skill-submit', [AdminSkillController::class, 'skill_store'])->name('admin_skill_submit')->middleware('admin:admin');
+Route::get('admin/skill-edit/{id}', [AdminSkillController::class, 'skill_edit'])->name('admin_skill_edit')->middleware('admin:admin');
+Route::post('admin/skill-update/{id}', [AdminSkillController::class, 'skill_update'])->name('admin_skill_update')->middleware('admin:admin');
+Route::get('admin/skill-delete/{id}', [AdminSkillController::class, 'skill_delete'])->name('admin_skill_delete')->middleware('admin:admin');
+
+//Qualification Route
+
+Route::get('admin/home-qualification', [AdminHomePageController::class, 'qualification'])->name('admin_home_qualification')->middleware('admin:admin');
+Route::post('admin/home-qualification-update', [AdminHomePageController::class, 'qualification_update'])->name('admin_home_qualification_update')->middleware('admin:admin');
 
 

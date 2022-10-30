@@ -40,6 +40,14 @@ return new class extends Migration
             $table->string('about_icon5_url')->nullable();
             $table->string('about_photo');
             $table->string('about_status');
+            $table->string('skill_subtitle')->nullable();
+            $table->string('skill_title')->nullable();
+            $table->string('skill_status');
+            $table->string('qualification_subtitle')->nullable();
+            $table->string('qualification_title')->nullable();
+            $table->string('education_title')->nullable();
+            $table->string('experience_title')->nullable();
+            $table->string('qualification_status');
             $table->timestamps();
         });
     }

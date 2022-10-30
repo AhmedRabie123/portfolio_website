@@ -1,6 +1,6 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Edit Home Banner')
+@section('heading', 'Edit Home Page Banner')
 
 @section('main_content')
 

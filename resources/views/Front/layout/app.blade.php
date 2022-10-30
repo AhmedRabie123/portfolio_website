@@ -39,6 +39,7 @@
     </a>
 
     @include('Front.layout.scripts')
+    @yield('skill_animation')
 
 
 </body>

@@ -110,4 +110,46 @@ class AdminHomePageController extends Controller
 
         return redirect()->route('admin_home')->with('success', 'Banner Updated Successfully');
     }
+
+    // Skill Section Method
+
+    public function skill()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_skill_show', compact('page_data'));
+    }
+
+    public function skill_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+        $page_data->skill_subtitle  =  $request->skill_subtitle;
+        $page_data->skill_title     =  $request->skill_title;
+        $page_data->skill_status    =  $request->skill_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Skill Updated Successfully');
+    }
+
+    public function qualification()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_qualification_show', compact('page_data'));
+    }
+
+    public function qualification_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+        $page_data->qualification_subtitle  =  $request->qualification_subtitle;
+        $page_data->qualification_title     =  $request->qualification_title;
+        $page_data->education_title     =  $request->education_title;
+        $page_data->experience_title     =  $request->experience_title;
+        $page_data->qualification_status    =  $request->qualification_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Skill Updated Successfully');
+    }
 }

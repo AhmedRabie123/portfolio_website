@@ -135,126 +135,117 @@
         </div>
     @endif
 
-    <div class="home-skill">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 heading">
-                    <h2>My Skill</h2>
-                    <h3>My Expertise Area</h3>
-                </div>
-                <div class="col-md-6 wow fadeInLeft">
+    @if ($page_data->skill_status == 'Show')
+        <div class="home-skill">
+            <div class="container">
+                <div class="row">
 
-                    <div class="progress-text">Photoshop</div>
-                    <div class="progress">
-                        <div class="progress-bar w-70-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                    </div>
+                    <div class="col-md-12 heading">
 
-                    <div class="progress-text">Illustrator</div>
-                    <div class="progress">
-                        <div class="progress-bar w-80-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        @if ($page_data->skill_subtitle != '')
+                            <h2>{{ $page_data->skill_subtitle }}</h2>
+                        @endif
+
+                        @if ($page_data->skill_title != '')
+                            <h3>{{ $page_data->skill_title }}</h3>
+                        @endif
+
                     </div>
 
-                    <div class="progress-text">Graphic Design</div>
-                    <div class="progress">
-                        <div class="progress-bar w-65-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+
+                    <div class="col-md-6 wow fadeInLeft">
+
+                        @php $i=0; @endphp
+                        @foreach ($left_skills as $item)
+                            @php $i++; @endphp
+                            <div class="progress-text">{{ $item->name }}</div>
+                            <div class="progress">
+                                <div class="progress-bar anim_left{{ $i }} w-0" role="progressbar"
+                                    aria-label="Example with label" aria-valuenow="{{ $item->percentage }}"
+                                    aria-valuemin="0" aria-valuemax="100">{{ $item->percentage }}%
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
 
-                    <div class="progress-text">Search Engine Optimization</div>
-                    <div class="progress">
-                        <div class="progress-bar w-55-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
-                    </div>
-                </div>
-                <div class="col-md-6 wow fadeInRight">
-                    <div class="progress-text">Laravel</div>
-                    <div class="progress">
-                        <div class="progress-bar w-70-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                    <div class="col-md-6 wow fadeInRight">
+
+                        @php $i=0; @endphp
+                        @foreach ($right_skills as $item)
+                            @php $i++; @endphp
+                            <div class="progress-text">{{ $item->name }}</div>
+                            <div class="progress">
+                                <div class="progress-bar anim_right{{ $i }} w-0" role="progressbar"
+                                    aria-label="Example with label" aria-valuenow="{{ $item->percentage }}"
+                                    aria-valuemin="0" aria-valuemax="100">{{ $item->percentage }}%</div>
+                            </div>
+                        @endforeach
                     </div>
 
-                    <div class="progress-text">WordPress</div>
-                    <div class="progress">
-                        <div class="progress-bar w-80-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                    </div>
-
-                    <div class="progress-text">Python</div>
-                    <div class="progress">
-                        <div class="progress-bar w-65-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-                    </div>
-
-                    <div class="progress-text">Java</div>
-                    <div class="progress">
-                        <div class="progress-bar w-55-p w-0" role="progressbar" aria-label="Example with label"
-                            aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
 
-    <div class="home-qualification">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 heading">
-                    <h2>My Qualification</h2>
-                    <h3>Education and Experience</h3>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="title"><i class="fas fa-graduation-cap"></i> Education</h2>
-                    <div class="inner">
-                        <div class="item wow fadeInUp">
-                            <h3>B.Sc. in Computer Science and Engineering</h3>
-                            <h4>Khulna University</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2015-2019</div>
-                            <div class="v-line"></div>
-                        </div>
-                        <div class="item wow fadeInUp">
-                            <h3>H.S.C. in Science Group</h3>
-                            <h4>Cantonment College, Khulna</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2013-2015</div>
-                            <div class="v-line"></div>
-                        </div>
-                        <div class="item wow fadeInUp">
-                            <h3>S.S.C. in Science Group</h3>
-                            <h4>Cantonment College, Khulna</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2011-2013</div>
-                            <div class="v-line"></div>
+    @if ($page_data->qualification_status == 'Show')
+        <div class="home-qualification">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 heading">
+                        <h2>{{ $page_data->qualification_subtitle }}</h2>
+                        <h3>{{ $page_data->qualification_title }}</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title"><i class="fas fa-graduation-cap"></i>{{ $page_data->education_title }}</h2>
+                        <div class="inner">
+                            <div class="item wow fadeInUp">
+                                <h3>B.Sc. in Computer Science and Engineering</h3>
+                                <h4>Khulna University</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2015-2019</div>
+                                <div class="v-line"></div>
+                            </div>
+                            <div class="item wow fadeInUp">
+                                <h3>H.S.C. in Science Group</h3>
+                                <h4>Cantonment College, Khulna</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2013-2015</div>
+                                <div class="v-line"></div>
+                            </div>
+                            <div class="item wow fadeInUp">
+                                <h3>S.S.C. in Science Group</h3>
+                                <h4>Cantonment College, Khulna</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2011-2013</div>
+                                <div class="v-line"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="title"><i class="fas fa-award"></i> Experience</h2>
-                    <div class="inner">
-                        <div class="item wow fadeInUp">
-                            <h3>ArefinDev IT Solution</h3>
-                            <h4>Main City Road, Khulna</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2022-Present</div>
-                            <div class="v-line"></div>
-                        </div>
-                        <div class="item wow fadeInUp">
-                            <h3>Prime Software Limited</h3>
-                            <h4>55 Main Road, Khulna</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2021-2022</div>
-                            <div class="v-line"></div>
-                        </div>
-                        <div class="item wow fadeInUp">
-                            <h3>ABC Computer Solution</h3>
-                            <h4>34 Street, Khulna</h4>
-                            <div class="time"><i class="far fa-clock"></i> 2019-2021</div>
-                            <div class="v-line"></div>
+                    <div class="col-md-6">
+                        <h2 class="title"><i class="fas fa-award"></i> {{ $page_data->experience_title }}</h2>
+                        <div class="inner">
+                            <div class="item wow fadeInUp">
+                                <h3>ArefinDev IT Solution</h3>
+                                <h4>Main City Road, Khulna</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2022-Present</div>
+                                <div class="v-line"></div>
+                            </div>
+                            <div class="item wow fadeInUp">
+                                <h3>Prime Software Limited</h3>
+                                <h4>55 Main Road, Khulna</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2021-2022</div>
+                                <div class="v-line"></div>
+                            </div>
+                            <div class="item wow fadeInUp">
+                                <h3>ABC Computer Solution</h3>
+                                <h4>34 Street, Khulna</h4>
+                                <div class="time"><i class="far fa-clock"></i> 2019-2021</div>
+                                <div class="v-line"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @endif
 
     <div class="service">
         <div class="container">
@@ -649,4 +640,27 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('skill_animation')
+    @php $i=0; @endphp
+    @foreach ($left_skills as $item)
+        @php $i++; @endphp
+        <script>
+            $(".anim_left{{ $i }}").animate({
+                width: "{{ $item->percentage }}%"
+            }, 2500);
+        </script>
+    @endforeach
+
+    @php $i=0; @endphp
+    @foreach ($right_skills as $item)
+        @php $i++; @endphp
+        <script>
+            $(".anim_right{{ $i }}").animate({
+                width: "{{ $item->percentage }}%"
+            }, 2500);
+        </script>
+    @endforeach
 @endsection
