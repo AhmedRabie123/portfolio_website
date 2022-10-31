@@ -1,9 +1,9 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Add Skill')
+@section('heading', 'Add Testimonial')
 
 @section('button')
-    <a href="{{ route('admin_skill_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
+    <a href="{{ route('admin_testimonial_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
 @endsection
 
 @section('main_content')
@@ -14,28 +14,32 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin_skill_submit') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin_testimonial_submit') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
                                 <div class="col-md-12">
 
                                     <div class="mb-4">
-                                        <label class="form-label">Skill Name *</label>
+                                        <label class="form-label">Testimonial Name *</label>
                                         <input type="text" class="form-control" name="name" value="">
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label">Skill Percentage *</label>
-                                        <input type="text" class="form-control" name="percentage" value="">
+                                        <label class="form-label">Testimonial Designation *</label>
+                                        <input type="text" class="form-control" name="designation" value="">
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label">Select Skill Side</label>
-                                        <select name="side" class="form-control">
-                                            <option value="Right">Right </option>
-                                            <option value="Left">Left </option>
-                                        </select>
+                                        <label class="form-label">Testimonial Comment *</label>
+                                        <textarea name="comment" class="form-control snote" cols="30" rows="10"></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Testimonial Photo</label>
+                                        <div>
+                                            <input type="file" class="form-control mt_10" name="photo">
+                                        </div>
                                     </div>
 
                                     <div class="mb-4">

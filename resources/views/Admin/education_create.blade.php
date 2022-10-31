@@ -1,9 +1,9 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Add Skill')
+@section('heading', 'Add Education')
 
 @section('button')
-    <a href="{{ route('admin_skill_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
+    <a href="{{ route('admin_education_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
 @endsection
 
 @section('main_content')
@@ -14,28 +14,30 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin_skill_submit') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin_education_submit') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
                                 <div class="col-md-12">
 
                                     <div class="mb-4">
-                                        <label class="form-label">Skill Name *</label>
-                                        <input type="text" class="form-control" name="name" value="">
+                                        <label class="form-label">Education Degree *</label>
+                                        <input type="text" class="form-control" name="degree" value="">
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label">Skill Percentage *</label>
-                                        <input type="text" class="form-control" name="percentage" value="">
+                                        <label class="form-label">Education Institute *</label>
+                                        <input type="text" class="form-control" name="institute" value="">
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label">Select Skill Side</label>
-                                        <select name="side" class="form-control">
-                                            <option value="Right">Right </option>
-                                            <option value="Left">Left </option>
-                                        </select>
+                                        <label class="form-label">Education Time *</label>
+                                        <input type="text" class="form-control" name="time" value="">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Education Order *</label>
+                                        <input type="text" class="form-control" name="item_order" value="">
                                     </div>
 
                                     <div class="mb-4">

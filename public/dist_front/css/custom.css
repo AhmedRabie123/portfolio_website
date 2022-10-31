@@ -296,7 +296,6 @@ nav .nav-item .nav-link:hover {
 .home-counter {
     padding-top: 70px;
     padding-bottom: 70px;
-    background-image: url(../images/counter_bg.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -440,7 +439,6 @@ nav .nav-item .nav-link:hover {
     background: #3c3c3c;
     padding-top: 70px;
     padding-bottom: 70px;
-    background-image: url(../images/testimonial_bg.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

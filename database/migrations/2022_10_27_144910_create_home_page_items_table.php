@@ -48,6 +48,23 @@ return new class extends Migration
             $table->string('education_title')->nullable();
             $table->string('experience_title')->nullable();
             $table->string('qualification_status');
+            $table->string('counter1_number');
+            $table->string('counter1_name');
+            $table->string('counter2_number');
+            $table->string('counter2_name');
+            $table->string('counter3_number');
+            $table->string('counter3_name');
+            $table->string('counter4_number');
+            $table->string('counter4_name');
+            $table->string('counter_background');
+            $table->string('counter_status');
+            $table->string('testimonial_subtitle')->nullable();
+            $table->string('testimonial_title')->nullable();
+            $table->string('testimonial_background');
+            $table->string('testimonial_status');
+            $table->string('client_subtitle')->nullable();
+            $table->string('client_title')->nullable();
+            $table->string('client_status');
             $table->timestamps();
         });
     }

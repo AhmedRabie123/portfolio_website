@@ -150,6 +150,111 @@ class AdminHomePageController extends Controller
         $page_data->qualification_status    =  $request->qualification_status;
         $page_data->update();
 
-        return redirect()->route('admin_home')->with('success', 'Skill Updated Successfully');
+        return redirect()->route('admin_home')->with('success', 'Qualification Updated Successfully');
+    }
+
+    public function counter()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_counter_show', compact('page_data'));
+    }
+
+    public function counter_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+        $request->validate([
+           'counter1_number' => 'required',
+           'counter1_name' => 'required',
+           'counter2_number' => 'required',
+           'counter2_name' => 'required',
+           'counter3_number' => 'required',
+           'counter3_name' => 'required',
+           'counter4_number' => 'required',
+           'counter4_name' => 'required',
+        ]);
+
+        if ($request->hasFile('counter_background')) {
+            $request->validate([
+                'counter_background' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->counter_background)) && $page_data->counter_background != NULL) {
+                unlink(public_path('uploads/' . $page_data->counter_background));
+            }
+
+            $ext = $request->file('counter_background')->extension();
+            $final_name = 'counter_background' . '-' . $ext;
+            $request->file('counter_background')->move(public_path('uploads/'), $final_name);
+            $page_data->counter_background = $final_name;
+        }
+
+        $page_data->counter1_number  =  $request->counter1_number;
+        $page_data->counter1_name    =  $request->counter1_name;
+        $page_data->counter2_number  =  $request->counter2_number;
+        $page_data->counter2_name    =  $request->counter2_name;
+        $page_data->counter3_number  =  $request->counter3_number;
+        $page_data->counter3_name    =  $request->counter3_name;
+        $page_data->counter4_number  =  $request->counter4_number;
+        $page_data->counter4_name    =  $request->counter4_name;
+        $page_data->counter_status   =  $request->counter_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Counter Updated Successfully');
+    }
+
+    public function testimonials()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_testimonials_show', compact('page_data'));
+    }
+
+    public function testimonials_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+
+        if ($request->hasFile('testimonial_background')) {
+            $request->validate([
+                'testimonial_background' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->testimonial_background)) && $page_data->testimonial_background != NULL) {
+                unlink(public_path('uploads/' . $page_data->testimonial_background));
+            }
+
+            $ext = $request->file('testimonial_background')->extension();
+            $final_name = 'testimonial_background' . '-' . $ext;
+            $request->file('testimonial_background')->move(public_path('uploads/'), $final_name);
+            $page_data->testimonial_background = $final_name;
+        }
+
+        $page_data->testimonial_subtitle  =  $request->testimonial_subtitle;
+        $page_data->testimonial_title  =  $request->testimonial_title;
+        $page_data->testimonial_status   =  $request->testimonial_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Testimonials Updated Successfully');
+    }
+
+    public function client()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_client_show', compact('page_data'));
+    }
+
+    public function client_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+        $page_data->client_subtitle  =  $request->client_subtitle;
+        $page_data->client_title     =  $request->client_title;
+        $page_data->client_status    =  $request->client_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Client Updated Successfully');
     }
 }

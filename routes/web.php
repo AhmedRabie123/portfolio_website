@@ -11,10 +11,6 @@ use App\Http\Controllers\Front\AboutController;
 
 
 
-
-
-
-
 // Admin Controller Route
 
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -22,7 +18,10 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminSkillController;
-
+use App\Http\Controllers\Admin\AdminEducationController;
+use App\Http\Controllers\Admin\AdminExperienceController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminClientController;
 
 
 
@@ -41,20 +40,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // about page route
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -112,5 +97,65 @@ Route::get('admin/skill-delete/{id}', [AdminSkillController::class, 'skill_delet
 
 Route::get('admin/home-qualification', [AdminHomePageController::class, 'qualification'])->name('admin_home_qualification')->middleware('admin:admin');
 Route::post('admin/home-qualification-update', [AdminHomePageController::class, 'qualification_update'])->name('admin_home_qualification_update')->middleware('admin:admin');
+
+// Admin Education create route
+
+Route::get('admin/education-show', [AdminEducationController::class, 'index'])->name('admin_education_show')->middleware('admin:admin');
+Route::get('admin/education-create', [AdminEducationController::class, 'education_create'])->name('admin_education_create')->middleware('admin:admin');
+Route::post('admin/education-submit', [AdminEducationController::class, 'education_store'])->name('admin_education_submit')->middleware('admin:admin');
+Route::get('admin/education-edit/{id}', [AdminEducationController::class, 'education_edit'])->name('admin_education_edit')->middleware('admin:admin');
+Route::post('admin/education-update/{id}', [AdminEducationController::class, 'education_update'])->name('admin_education_update')->middleware('admin:admin');
+Route::get('admin/education-delete/{id}', [AdminEducationController::class, 'education_delete'])->name('admin_education_delete')->middleware('admin:admin');
+
+// Admin Experience create route
+
+Route::get('admin/experience-show', [AdminExperienceController::class, 'index'])->name('admin_experience_show')->middleware('admin:admin');
+Route::get('admin/experience-create', [AdminExperienceController::class, 'experience_create'])->name('admin_experience_create')->middleware('admin:admin');
+Route::post('admin/experience-submit', [AdminExperienceController::class, 'experience_store'])->name('admin_experience_submit')->middleware('admin:admin');
+Route::get('admin/experience-edit/{id}', [AdminExperienceController::class, 'experience_edit'])->name('admin_experience_edit')->middleware('admin:admin');
+Route::post('admin/experience-update/{id}', [AdminExperienceController::class, 'experience_update'])->name('admin_experience_update')->middleware('admin:admin');
+Route::get('admin/experience-delete/{id}', [AdminExperienceController::class, 'experience_delete'])->name('admin_experience_delete')->middleware('admin:admin');
+
+//Counter Route
+
+Route::get('admin/home-counter', [AdminHomePageController::class, 'counter'])->name('admin_home_counter')->middleware('admin:admin');
+Route::post('admin/home-counter-update', [AdminHomePageController::class, 'counter_update'])->name('admin_home_counter_update')->middleware('admin:admin');
+
+//Testimonials Route
+
+Route::get('admin/home-testimonials', [AdminHomePageController::class, 'testimonials'])->name('admin_home_testimonials')->middleware('admin:admin');
+Route::post('admin/home-testimonials-update', [AdminHomePageController::class, 'testimonials_update'])->name('admin_home_testimonials_update')->middleware('admin:admin');
+
+// Admin Testimonial create route
+
+Route::get('admin/testimonial-show', [AdminTestimonialController::class, 'index'])->name('admin_testimonial_show')->middleware('admin:admin');
+Route::get('admin/testimonial-create', [AdminTestimonialController::class, 'testimonial_create'])->name('admin_testimonial_create')->middleware('admin:admin');
+Route::post('admin/testimonial-submit', [AdminTestimonialController::class, 'testimonial_store'])->name('admin_testimonial_submit')->middleware('admin:admin');
+Route::get('admin/testimonial-edit/{id}', [AdminTestimonialController::class, 'testimonial_edit'])->name('admin_testimonial_edit')->middleware('admin:admin');
+Route::post('admin/testimonial-update/{id}', [AdminTestimonialController::class, 'testimonial_update'])->name('admin_testimonial_update')->middleware('admin:admin');
+Route::get('admin/testimonial-delete/{id}', [AdminTestimonialController::class, 'testimonial_delete'])->name('admin_testimonial_delete')->middleware('admin:admin');
+
+//Client Route
+
+Route::get('admin/home-client', [AdminHomePageController::class, 'client'])->name('admin_home_client')->middleware('admin:admin');
+Route::post('admin/home-client-update', [AdminHomePageController::class, 'client_update'])->name('admin_home_client_update')->middleware('admin:admin');
+
+// Admin Client create route
+
+Route::get('admin/client-show', [AdminClientController::class, 'index'])->name('admin_client_show')->middleware('admin:admin');
+Route::get('admin/client-create', [AdminClientController::class, 'client_create'])->name('admin_client_create')->middleware('admin:admin');
+Route::post('admin/client-submit', [AdminClientController::class, 'client_store'])->name('admin_client_submit')->middleware('admin:admin');
+Route::get('admin/client-edit/{id}', [AdminClientController::class, 'client_edit'])->name('admin_client_edit')->middleware('admin:admin');
+Route::post('admin/client-update/{id}', [AdminClientController::class, 'client_update'])->name('admin_client_update')->middleware('admin:admin');
+Route::get('admin/client-delete/{id}', [AdminClientController::class, 'client_delete'])->name('admin_client_delete')->middleware('admin:admin');
+
+
+
+
+
+
+
+
+
 
 

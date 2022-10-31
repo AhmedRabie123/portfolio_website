@@ -14,7 +14,7 @@
                     <span>Dashboard</span></a></li>
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
@@ -35,12 +35,48 @@
                                 class="fas fa-angle-right"></i>Qualification Section</a>
                     </li>
 
+                    <li class="{{ Request::is('admin/home-counter') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_counter') }}"><i class="fas fa-angle-right"></i>Counter
+                            Section</a>
+
+                    <li class="{{ Request::is('admin/home-testimonials') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_testimonials') }}"><i
+                                class="fas fa-angle-right"></i>Testimonials Section</a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/home-client') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_client') }}"><i class="fas fa-angle-right"></i>Clients
+                            Section</a>
+                    </li>
+
                 </ul>
             </li>
 
-            <li class="{{ Request::is('admin/skill-show') ? 'active' : '' }}"><a class="nav-link"
+            <li class="{{ Request::is('admin/skill*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_skill_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Table"><i class="fas fa-hand-point-right"></i> <span>Skills</span></a></li>
+                    data-bs-title="Skills"><i class="fas fa-hand-point-right"></i> <span>Skills</span></a></li>
+
+            <li class="{{ Request::is('admin/education*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_education_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-title="Educations"><i class="fas fa-hand-point-right"></i> <span>Educations</span></a></li>
+
+            <li class="{{ Request::is('admin/experience*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_experience_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-title="Experience"><i class="fas fa-hand-point-right"></i> <span>Experience</span></a></li>
+
+
+            <li class="{{ Request::is('admin/testimonial*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_testimonial_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-title="Testimonials"><i class="fas fa-hand-point-right"></i>
+                    <span>Testimonials</span></a></li>
+
+            <li class="{{ Request::is('admin/client*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_client_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-title="Clients"><i class="fas fa-hand-point-right"></i>
+                    <span>Clients</span></a></li>
+
+
+
 
             <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Setting"><i class="fas fa-hand-point-right"></i>

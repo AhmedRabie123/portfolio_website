@@ -1,9 +1,9 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'View Skills Section')
+@section('heading', 'View Page Experience')
 
 @section('button')
-    <a href="{{ route('admin_skill_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Skill</a>
+    <a href="{{ route('admin_experience_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Experience</a>
 @endsection
 
 @section('main_content')
@@ -19,23 +19,25 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Skill Name</th>
-                                        <th>Skill Percentage</th>
-                                        <th>Skill Side</th>
+                                        <th>experience Company</th>
+                                        <th>experience Designation</th>
+                                        <th>experience Time</th>
+                                        <th>experience Order</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($all_skill as $item)
+                                    @foreach ($all_experience as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->percentage }}</td>
-                                            <td>{{ $item->side }}</td>
+                                            <td>{{ $item->company }}</td>
+                                            <td>{{ $item->designation }}</td>
+                                            <td>{{ $item->time }}</td>
+                                            <td>{{ $item->item_order }}</td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_skill_edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('admin_skill_delete', $item->id) }}" class="btn btn-danger"
+                                                <a href="{{ route('admin_experience_edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('admin_experience_delete', $item->id) }}" class="btn btn-danger"
                                                     onClick="return confirm('Are you sure?');">Delete</a>
                                             </td>
                                         </tr>
