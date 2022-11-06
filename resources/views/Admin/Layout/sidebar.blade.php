@@ -14,7 +14,7 @@
                     <span>Dashboard</span></a></li>
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
@@ -49,8 +49,30 @@
                             Section</a>
                     </li>
 
+                    <li class="{{ Request::is('admin/home-service') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_service') }}"><i class="fas fa-angle-right"></i>services
+                            Section</a>
+                    </li>
+
                 </ul>
             </li>
+
+
+
+            <li
+                class="nav-item dropdown {{ Request::is('admin/page-service') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
+                        Pages</span></a>
+                <ul class="dropdown-menu">
+
+                    <li class="{{ Request::is('admin/page-service') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_page_service') }}"><i class="fas fa-angle-right"></i>Services Page
+                            </a>
+                    </li>
+
+                </ul>
+            </li>
+
 
             <li class="{{ Request::is('admin/skill*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_skill_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -58,11 +80,13 @@
 
             <li class="{{ Request::is('admin/education*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_education_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Educations"><i class="fas fa-hand-point-right"></i> <span>Educations</span></a></li>
+                    data-bs-title="Educations"><i class="fas fa-hand-point-right"></i> <span>Educations</span></a>
+            </li>
 
             <li class="{{ Request::is('admin/experience*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_experience_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Experience"><i class="fas fa-hand-point-right"></i> <span>Experience</span></a></li>
+                    data-bs-title="Experience"><i class="fas fa-hand-point-right"></i> <span>Experience</span></a>
+            </li>
 
 
             <li class="{{ Request::is('admin/testimonial*') ? 'active' : '' }}"><a class="nav-link"
@@ -76,17 +100,25 @@
                     <span>Clients</span></a></li>
 
 
+            <li class="{{ Request::is('admin/service*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_service_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-title="services"><i class="fas fa-hand-point-right"></i>
+                    <span>services</span></a></li>
+
+
 
 
             <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Setting"><i class="fas fa-hand-point-right"></i>
                     <span>Setting</span></a></li>
 
-            <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Form"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
+            <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-title="Form"><i class="fas fa-hand-point-right"></i>
+                    <span>Form</span></a></li>
 
-            <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Table"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
+            <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-title="Table"><i class="fas fa-hand-point-right"></i>
+                    <span>Table</span></a></li>
 
             <li class=""><a class="nav-link" href="invoice.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Invoice"><i class="fas fa-hand-point-right"></i>

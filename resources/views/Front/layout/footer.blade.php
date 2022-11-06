@@ -3,6 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    {{-- <a style="float: right; font-size: 40px; color: #ee6348" href="https://api.whatsapp.com/send?phone=01015777094" target="_blank"><i class="fab fa-whatsapp"></i></a> --}}
+
                     <div class="logo d-flex justify-content-center">
                         <img src="{{ asset('dist_front/images/footer-logo.png') }}" alt="">
                     </div>
@@ -24,3 +26,6 @@
             </div>
         </div>
     </div>
+
+
+ 

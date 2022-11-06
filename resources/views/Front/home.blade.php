@@ -231,99 +231,55 @@
         </div>
     @endif
 
-    <div class="service">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 heading">
-                    <h2>Services</h2>
-                    <h3>What Services I Offer</h3>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInLeft">
-                    <div class="item">
-                        <div class="icon"><i class="fas fa-volleyball-ball"></i></div>
-                        <h3>Website Design</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, eos eu tollit argumentum, affert nostrum facilisi ut sit. Ne vide
-                            assum suavitate usu, nihil petentium est et.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
-                        </div>
+
+    @if ($page_data->service_status == 'Show')
+        <div class="service">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 heading">
+                        @if ($page_data->service_subtitle != '')
+                            <h2>{{ $page_data->service_subtitle }}</h2>
+                        @endif
+                        @if ($page_data->service_title != '')
+                            <h3>{{ $page_data->service_title }}</h3>
+                        @endif
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp">
-                    <div class="item">
-                        <div class="icon"><i class="fas fa-toolbox"></i></div>
-                        <h3>Website Development</h3>
-                        <p>
-                            Ne nam mollis hendrerit, ne latine deseruisse sed, ceteros accusam sea id. Vis erant putant
-                            assentior eu, in porro nonumy sapientem sed.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
+         
+                    @php $i=1; @endphp
+                    @foreach ($service_data as $item)
+                    @php  
+                      if ($i%3 == 1) {
+                        $anim = 'fadeInLeft';
+                      }elseif ($i%3 == 2) {
+                        $anim = 'fadeInUp';
+                      }elseif ($i%3 == 0) {
+                        $anim = 'fadeInRight';
+                      }
+                      $i++;
+                    @endphp
+                        <div class="col-lg-4 col-md-6 wow {{ $anim }}">
+                            <div class="item">
+                                <div class="icon"><i class="{{ $item->icon }}"></i></div>
+                                <h3>{{ $item->name }}</h3>
+                                <p>
+                                    {!! $item->short_description !!}
+                                </p>
+                                <div class="button">
+                                    <a href="{{ route('service_detail', $item->slug) }}" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInRight">
-                    <div class="item">
-                        <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                        <h3>Digital Marketing</h3>
-                        <p>
-                            Vis in tempor nemore oportere, quidam noluisse comprehensam usu in. Singulis nominati torquatos
-                            cum cu, nec aliquid honestatis at.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInLeft">
-                    <div class="item">
-                        <div class="icon"><i class="fas fa-pencil-alt"></i></div>
-                        <h3>Content Writing</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, eos eu tollit argumentum, affert nostrum facilisi ut sit. Ne vide
-                            assum suavitate usu, nihil petentium est et.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp">
-                    <div class="item">
-                        <div class="icon"><i class="far fa-lightbulb"></i></div>
-                        <h3>Social Media Marketing</h3>
-                        <p>
-                            Ne nam mollis hendrerit, ne latine deseruisse sed, ceteros accusam sea id. Vis erant putant
-                            assentior eu, in porro nonumy sapientem sed.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInRight">
-                    <div class="item">
-                        <div class="icon"><i class="fas fa-search"></i></div>
-                        <h3>Search Engine Optimization</h3>
-                        <p>
-                            Vis in tempor nemore oportere, quidam noluisse comprehensam usu in. Singulis nominati torquatos
-                            cum cu, nec aliquid honestatis at.
-                        </p>
-                        <div class="button">
-                            <a href="service-detail.html" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
 
 
     @if ($page_data->counter_status == 'Show')
-        <div class="home-counter"
-            style="background-image: url({{ asset('uploads/' . $page_data->counter_background) }})">
+        <div class="home-counter" style="background-image: url({{ asset('uploads/' . $page_data->counter_background) }})">
             <div class="container">
                 <div class="row counter-items">
                     <div class="col-md-3 counter-item">
@@ -581,9 +537,11 @@
                                 <div class="item">
                                     @if ($item->url != '')
                                         <a href="{{ $item->url }}" target="_blank"><img
-                                                src="{{ asset('uploads/' . $item->photo) }}" alt="" style="height: 130px; width: 150px ; border-radius: 50%"></a>
+                                                src="{{ asset('uploads/' . $item->photo) }}" alt=""
+                                                style="height: 130px; width: 150px ; border-radius: 50%"></a>
                                     @else
-                                        <img src="{{ asset('uploads/' . $item->photo) }}" alt="" style="height: 130px; width: 150px ; border-radius: 50%">
+                                        <img src="{{ asset('uploads/' . $item->photo) }}" alt=""
+                                            style="height: 130px; width: 150px ; border-radius: 50%">
                                     @endif
 
                                 </div>

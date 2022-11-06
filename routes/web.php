@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Front Controller Route
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\ServiceController;
 
 
 
@@ -22,6 +23,8 @@ use App\Http\Controllers\Admin\AdminEducationController;
 use App\Http\Controllers\Admin\AdminExperienceController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminClientController;
+use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminPageController;
 
 
 
@@ -41,7 +44,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+// Service page route
 
+Route::get('/services', [ServiceController::class, 'index'])->name('service');
+
+// Service detail page route
+
+Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
 
 
 
@@ -149,10 +158,24 @@ Route::get('admin/client-edit/{id}', [AdminClientController::class, 'client_edit
 Route::post('admin/client-update/{id}', [AdminClientController::class, 'client_update'])->name('admin_client_update')->middleware('admin:admin');
 Route::get('admin/client-delete/{id}', [AdminClientController::class, 'client_delete'])->name('admin_client_delete')->middleware('admin:admin');
 
+//Service Route
 
+Route::get('admin/home-service', [AdminHomePageController::class, 'service'])->name('admin_home_service')->middleware('admin:admin');
+Route::post('admin/home-service-update', [AdminHomePageController::class, 'service_update'])->name('admin_home_service_update')->middleware('admin:admin');
 
+// Admin Service create route
 
+Route::get('admin/service-show', [AdminServiceController::class, 'index'])->name('admin_service_show')->middleware('admin:admin');
+Route::get('admin/service-create', [AdminServiceController::class, 'service_create'])->name('admin_service_create')->middleware('admin:admin');
+Route::post('admin/service-submit', [AdminServiceController::class, 'service_store'])->name('admin_service_submit')->middleware('admin:admin');
+Route::get('admin/service-edit/{id}', [AdminServiceController::class, 'service_edit'])->name('admin_service_edit')->middleware('admin:admin');
+Route::post('admin/service-update/{id}', [AdminServiceController::class, 'service_update'])->name('admin_service_update')->middleware('admin:admin');
+Route::get('admin/service-delete/{id}', [AdminServiceController::class, 'service_delete'])->name('admin_service_delete')->middleware('admin:admin');
 
+//Service Page Route
+
+Route::get('admin/page-service', [AdminPageController::class, 'services'])->name('admin_page_service')->middleware('admin:admin');
+Route::post('admin/page-service-update', [AdminPageController::class, 'services_update'])->name('admin_page_service_update')->middleware('admin:admin');
 
 
 

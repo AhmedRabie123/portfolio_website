@@ -257,4 +257,28 @@ class AdminHomePageController extends Controller
 
         return redirect()->route('admin_home')->with('success', 'Client Updated Successfully');
     }
+
+    public function service()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_service_show', compact('page_data'));
+    }
+
+    public function service_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+        $request->validate([
+            'service_total' => 'required',
+         ]);
+
+        $page_data->service_subtitle  =  $request->service_subtitle;
+        $page_data->service_title     =  $request->service_title;
+        $page_data->service_total     =  $request->service_total;
+        $page_data->service_status    =  $request->service_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Service Updated Successfully');
+    }
 }

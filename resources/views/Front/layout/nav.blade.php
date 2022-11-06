@@ -16,7 +16,7 @@
                     <a class="nav-link {{ Request::is('about') ? "active" : "" }}" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="service.html">Services</a>
+                    <a class="nav-link {{ Request::is('services') ? "active" : "" }}" href="{{ route('service') }}">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="portfolio.html">Portfolio</a>
