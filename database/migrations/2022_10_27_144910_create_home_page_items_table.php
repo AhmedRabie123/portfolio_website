@@ -69,6 +69,9 @@ return new class extends Migration
             $table->string('service_title')->nullable();
             $table->integer('service_total');
             $table->string('service_status');
+            $table->string('portfolio_subtitle')->nullable();
+            $table->string('portfolio_title')->nullable();
+            $table->string('portfolio_status');
             $table->timestamps();
         });
     }

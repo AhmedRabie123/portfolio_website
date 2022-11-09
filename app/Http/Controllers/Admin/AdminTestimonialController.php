@@ -32,7 +32,7 @@ class AdminTestimonialController extends Controller
 
         $now = time();
         $ext = $request->file('photo')->extension();
-        $final_name = 'testimonial_photo_'. $now . '-' . $ext;
+        $final_name = 'testimonial_photo_'. $now . '.' . $ext;
         $request->file('photo')->move(public_path('uploads/'), $final_name);
         $testimonial->photo = $final_name;
 
@@ -75,7 +75,7 @@ class AdminTestimonialController extends Controller
 
             $now = time();
             $ext = $request->file('photo')->extension();
-            $final_name = 'testimonial_photo_'. $now . '-' . $ext;
+            $final_name = 'testimonial_photo_'. $now . '.' . $ext;
             $request->file('photo')->move(public_path('uploads/'), $final_name);
             $testimonial->photo = $final_name;
         }

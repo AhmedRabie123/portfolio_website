@@ -37,12 +37,12 @@ class AdminServiceController extends Controller
 
         $now = time();
         $ext = $request->file('photo')->extension();
-        $final_name = 'service_photo_'. $now . '-' . $ext;
+        $final_name = 'service_photo_'. $now . '.' . $ext;
         $request->file('photo')->move(public_path('uploads/'), $final_name);
         $service->photo = $final_name;
 
         $ext1 = $request->file('banner')->extension();
-        $final_name1 = 'service_banner_'. $now . '-' . $ext1;
+        $final_name1 = 'service_banner_'. $now . '.' . $ext1;
         $request->file('banner')->move(public_path('uploads/'), $final_name1);
         $service->banner = $final_name1;
 
@@ -93,7 +93,7 @@ class AdminServiceController extends Controller
 
             $now = time();
             $ext = $request->file('photo')->extension();
-            $final_name = 'service_photo_'. $now . '-' . $ext;
+            $final_name = 'service_photo_'. $now . '.' . $ext;
             $request->file('photo')->move(public_path('uploads/'), $final_name);
             $service->photo = $final_name;
         }
@@ -110,7 +110,7 @@ class AdminServiceController extends Controller
 
             $now = time();
             $ext1 = $request->file('banner')->extension();
-            $final_name1 = 'service_banner_'. $now . '-' . $ext1;
+            $final_name1 = 'service_banner_'. $now . '.' . $ext1;
             $request->file('banner')->move(public_path('uploads/'), $final_name1);
             $service->banner = $final_name1;
         }

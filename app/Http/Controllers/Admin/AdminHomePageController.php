@@ -38,7 +38,7 @@ class AdminHomePageController extends Controller
 
             //$now = time();
             $ext = $request->file('banner_photo')->extension();
-            $final_name = 'home_banner' . '-' . $ext;
+            $final_name = 'home_banner' . '.' . $ext;
             $request->file('banner_photo')->move(public_path('uploads/'), $final_name);
             $page_data->banner_photo = $final_name;
         }
@@ -83,7 +83,7 @@ class AdminHomePageController extends Controller
 
             //$now = time();
             $ext = $request->file('about_photo')->extension();
-            $final_name = 'home_about' . '-' . $ext;
+            $final_name = 'home_about' . '.' . $ext;
             $request->file('about_photo')->move(public_path('uploads/'), $final_name);
             $page_data->about_photo = $final_name;
         }
@@ -185,7 +185,7 @@ class AdminHomePageController extends Controller
             }
 
             $ext = $request->file('counter_background')->extension();
-            $final_name = 'counter_background' . '-' . $ext;
+            $final_name = 'counter_background' . '.' . $ext;
             $request->file('counter_background')->move(public_path('uploads/'), $final_name);
             $page_data->counter_background = $final_name;
         }
@@ -226,7 +226,7 @@ class AdminHomePageController extends Controller
             }
 
             $ext = $request->file('testimonial_background')->extension();
-            $final_name = 'testimonial_background' . '-' . $ext;
+            $final_name = 'testimonial_background' . '.' . $ext;
             $request->file('testimonial_background')->move(public_path('uploads/'), $final_name);
             $page_data->testimonial_background = $final_name;
         }
@@ -280,5 +280,25 @@ class AdminHomePageController extends Controller
         $page_data->update();
 
         return redirect()->route('admin_home')->with('success', 'Service Updated Successfully');
+    }
+
+    public function portfolio()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_portfolio_show', compact('page_data'));
+    }
+
+    public function portfolio_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+
+        $page_data->portfolio_subtitle  =  $request->portfolio_subtitle;
+        $page_data->portfolio_title     =  $request->portfolio_title;
+        $page_data->portfolio_status    =  $request->portfolio_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Portfolio Updated Successfully');
     }
 }

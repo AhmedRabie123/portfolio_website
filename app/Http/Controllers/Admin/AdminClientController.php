@@ -29,7 +29,7 @@ class AdminClientController extends Controller
 
         $now = time();
         $ext = $request->file('photo')->extension();
-        $final_name = 'client_photo_'. $now . '-' . $ext;
+        $final_name = 'client_photo_'. $now . '.' . $ext;
         $request->file('photo')->move(public_path('uploads/'), $final_name);
         $client->photo = $final_name;
 
@@ -64,7 +64,7 @@ class AdminClientController extends Controller
 
             $now = time();
             $ext = $request->file('photo')->extension();
-            $final_name = 'client_photo_'. $now . '-' . $ext;
+            $final_name = 'client_photo_'. $now . '.' . $ext;
             $request->file('photo')->move(public_path('uploads/'), $final_name);
             $client->photo = $final_name;
         }

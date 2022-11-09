@@ -244,19 +244,19 @@
                             <h3>{{ $page_data->service_title }}</h3>
                         @endif
                     </div>
-         
+
                     @php $i=1; @endphp
                     @foreach ($service_data as $item)
-                    @php  
-                      if ($i%3 == 1) {
-                        $anim = 'fadeInLeft';
-                      }elseif ($i%3 == 2) {
-                        $anim = 'fadeInUp';
-                      }elseif ($i%3 == 0) {
-                        $anim = 'fadeInRight';
-                      }
-                      $i++;
-                    @endphp
+                        @php
+                            if ($i % 3 == 1) {
+                                $anim = 'fadeInLeft';
+                            } elseif ($i % 3 == 2) {
+                                $anim = 'fadeInUp';
+                            } elseif ($i % 3 == 0) {
+                                $anim = 'fadeInRight';
+                            }
+                            $i++;
+                        @endphp
                         <div class="col-lg-4 col-md-6 wow {{ $anim }}">
                             <div class="item">
                                 <div class="icon"><i class="{{ $item->icon }}"></i></div>
@@ -265,7 +265,8 @@
                                     {!! $item->short_description !!}
                                 </p>
                                 <div class="button">
-                                    <a href="{{ route('service_detail', $item->slug) }}" class="btn btn-primary">Read More</a>
+                                    <a href="{{ route('service_detail', $item->slug) }}" class="btn btn-primary">Read
+                                        More</a>
                                 </div>
                             </div>
                         </div>
@@ -303,108 +304,123 @@
         </div>
     @endif
 
+    @if ($page_data->portfolio_status == 'Show')
+        <div class="portfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 heading">
+                        @if ($page_data->portfolio_subtitle != '')
+                            <h2>{{ $page_data->portfolio_subtitle }}</h2>
+                        @endif
 
-    <div class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 heading">
-                    <h2>My Portfolio</h2>
-                    <h3>All Main Client Works</h3>
-                </div>
-                <div class="col-md-12">
-                    <div class="filter">
-                        <ul>
-                            <li data-filter="*">All</li>
-                            <li data-filter=".web_design">Web Design</li>
-                            <li data-filter=".web_development">Web Development</li>
-                            <li data-filter=".digital_marketing">Digital Marketing</li>
-                        </ul>
+                        @if ($page_data->portfolio_title != '')
+                            <h3>{{ $page_data->portfolio_title }}</h3>
+                        @endif
                     </div>
-                    <div class="filter-items">
-                        <div class="filter-item web_design">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/design_1.jpg') }}" alt=""></a></div>
-                                <div class="text">
-                                    <h2>Design Project 1</h2>
+                    <div class="col-md-12">
+                        <div class="filter">
+                            <ul>
+                                <li data-filter="*">All</li>
+                                <li data-filter=".web_design">Web Design</li>
+                                <li data-filter=".web_development">Web Development</li>
+                                <li data-filter=".digital_marketing">Digital Marketing</li>
+                            </ul>
+                        </div>
+                        <div class="filter-items">
+                            <div class="filter-item web_design">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/design_1.jpg') }}" alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Design Project 1</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item web_development">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/development_1.jpg') }}" alt=""></a>
-                                </div>
-                                <div class="text">
-                                    <h2>Development Project 1</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item web_design">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/design_2.jpg') }}" alt=""></a></div>
-                                <div class="text">
-                                    <h2>Design Project 2</h2>
+                            <div class="filter-item web_development">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/development_1.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Development Project 1</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item digital_marketing">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/marketing_1.jpg') }}" alt=""></a>
-                                </div>
-                                <div class="text">
-                                    <h2>Marketing Project 1</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item digital_marketing">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/marketing_2.jpg') }}" alt=""></a>
-                                </div>
-                                <div class="text">
-                                    <h2>Marketing Project 2</h2>
+                            <div class="filter-item web_design">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/design_2.jpg') }}" alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Design Project 2</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item web_development">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/development_2.jpg') }}" alt=""></a>
-                                </div>
-                                <div class="text">
-                                    <h2>Development Project 2</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-item web_design">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/design_3.jpg') }}" alt=""></a></div>
-                                <div class="text">
-                                    <h2>Design Project 3</h2>
+                            <div class="filter-item digital_marketing">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/marketing_1.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Marketing Project 1</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item web_development">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/development_3.jpg') }}" alt=""></a>
-                                </div>
-                                <div class="text">
-                                    <h2>Development Project 3</h2>
+                            <div class="filter-item digital_marketing">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/marketing_2.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Marketing Project 2</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item digital_marketing">
-                            <div class="inner">
-                                <div class="photo"><a href="portfolio-detail.html"><img
-                                            src="{{ asset('dist_front/images/marketing_3.jpg') }}" alt=""></a>
+                            <div class="filter-item web_development">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/development_2.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Development Project 2</h2>
+                                    </div>
                                 </div>
-                                <div class="text">
-                                    <h2>Marketing Project 3</h2>
+                            </div>
+                            <div class="filter-item web_design">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/design_3.jpg') }}" alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Design Project 3</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item web_development">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/development_3.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Development Project 3</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item digital_marketing">
+                                <div class="inner">
+                                    <div class="photo"><a href="portfolio-detail.html"><img
+                                                src="{{ asset('dist_front/images/marketing_3.jpg') }}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="text">
+                                        <h2>Marketing Project 3</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -412,7 +428,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
 
     @if ($page_data->testimonial_status == 'Show')
         <div class="home-testimonial"

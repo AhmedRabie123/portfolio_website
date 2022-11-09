@@ -14,7 +14,7 @@
                     <span>Dashboard</span></a></li>
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') || Request::is('admin/home-portfolio') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
@@ -54,20 +54,24 @@
                             Section</a>
                     </li>
 
+                    <li class="{{ Request::is('admin/home-portfolio') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_portfolio') }}"><i class="fas fa-angle-right"></i>Portfolio
+                            Section</a>
+                    </li>
+
                 </ul>
             </li>
 
 
 
-            <li
-                class="nav-item dropdown {{ Request::is('admin/page-service') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('admin/page-service') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
                         Pages</span></a>
                 <ul class="dropdown-menu">
 
                     <li class="{{ Request::is('admin/page-service') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_page_service') }}"><i class="fas fa-angle-right"></i>Services Page
-                            </a>
+                        </a>
                     </li>
 
                 </ul>
@@ -105,24 +109,41 @@
                     data-bs-title="services"><i class="fas fa-hand-point-right"></i>
                     <span>services</span></a></li>
 
+            <li class="nav-item dropdown {{ Request::is('admin/portfolio-category*') || Request::is('admin/portfolio-show') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i
+                        class="fas fa-hand-point-right"></i><span>Portfolios
+                    </span></a>
+                <ul class="dropdown-menu">
+
+                    <li class="{{ Request::is('admin/portfolio-category*') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_portfolio_category_show') }}"><i class="fas fa-angle-right"></i>Category
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/portfolio-show') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('admin_portfolio_show') }}"><i class="fas fa-angle-right"></i>Portfolio
+                    </a>
+                </li>
+
+                </ul>
+            </li>
 
 
-
-            <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip"
+            {{-- <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Setting"><i class="fas fa-hand-point-right"></i>
-                    <span>Setting</span></a></li>
+                    <span>Setting</span></a></li> --}}
 
-            <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip"
+            {{-- <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Form"><i class="fas fa-hand-point-right"></i>
-                    <span>Form</span></a></li>
+                    <span>Form</span></a></li> --}}
 
-            <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip"
+            {{-- <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Table"><i class="fas fa-hand-point-right"></i>
-                    <span>Table</span></a></li>
-
+                    <span>Table</span></a></li> --}}
+            {{-- 
             <li class=""><a class="nav-link" href="invoice.html" data-bs-toggle="tooltip"
                     data-bs-placement="right" data-bs-title="Invoice"><i class="fas fa-hand-point-right"></i>
-                    <span>Invoice</span></a></li>
+                    <span>Invoice</span></a></li> --}}
 
         </ul>
     </aside>
