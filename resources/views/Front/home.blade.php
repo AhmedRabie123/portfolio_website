@@ -321,108 +321,26 @@
                         <div class="filter">
                             <ul>
                                 <li data-filter="*">All</li>
-                                <li data-filter=".web_design">Web Design</li>
-                                <li data-filter=".web_development">Web Development</li>
-                                <li data-filter=".digital_marketing">Digital Marketing</li>
+                                @foreach ($portfolio_categories as $item)
+                                    <li data-filter=".abc{{ $item->id }}">{{ $item->category_name }}</li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="filter-items">
-                            <div class="filter-item web_design">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/design_1.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Design Project 1</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item web_development">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/development_1.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Development Project 1</h2>
+
+                            @foreach ($portfolio_data as $item)
+                                <div class="filter-item abc{{ $item->portfolio_category_id }}">
+                                    <div class="inner">
+                                        <div class="photo"><a href=""><img
+                                                    src="{{ asset('uploads/' . $item->photo) }}" alt=""></a>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $item->name }}</h2>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="filter-item web_design">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/design_2.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Design Project 2</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item digital_marketing">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/marketing_1.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Marketing Project 1</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item digital_marketing">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/marketing_2.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Marketing Project 2</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item web_development">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/development_2.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Development Project 2</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item web_design">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/design_3.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Design Project 3</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item web_development">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/development_3.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Development Project 3</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="filter-item digital_marketing">
-                                <div class="inner">
-                                    <div class="photo"><a href="portfolio-detail.html"><img
-                                                src="{{ asset('dist_front/images/marketing_3.jpg') }}"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="text">
-                                        <h2>Marketing Project 3</h2>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

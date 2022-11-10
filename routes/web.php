@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ServiceController;
+use App\Http\Controllers\Front\PortfolioController;
 
 
 
@@ -54,7 +55,9 @@ Route::get('/services', [ServiceController::class, 'index'])->name('service');
 
 Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
 
+// Portfolio page route
 
+Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolio');
 
 
 
@@ -208,9 +211,16 @@ Route::get('admin/portfolio/photo-gallery/show/{id}', [AdminPortfolioController:
 Route::post('admin/portfolio_photo_gallery-submit', [AdminPortfolioController::class, 'photo_gallery_submit'])->name('admin_portfolio_photo_gallery_submit')->middleware('admin:admin');
 Route::get('admin/portfolio-photo-delete/{id}', [AdminPortfolioController::class, 'photo_gallery_delete'])->name('admin_portfolio_photo_gallery_delete')->middleware('admin:admin');
 
+// Admin portfolio Video gallery route
 
+Route::get('admin/portfolio/video-gallery/show/{id}', [AdminPortfolioController::class, 'video_gallery'])->name('admin_portfolio_video_gallery_show')->middleware('admin:admin');
+Route::post('admin/portfolio_video_gallery-submit', [AdminPortfolioController::class, 'video_gallery_submit'])->name('admin_portfolio_video_gallery_submit')->middleware('admin:admin');
+Route::get('admin/portfolio-video-delete/{id}', [AdminPortfolioController::class, 'video_gallery_delete'])->name('admin_portfolio_video_gallery_delete')->middleware('admin:admin');
 
+//Service Page Route
 
+Route::get('admin/page-portfolio', [AdminPageController::class, 'portfolios'])->name('admin_page_portfolio')->middleware('admin:admin');
+Route::post('admin/page-portfolio-update', [AdminPageController::class, 'portfolios_update'])->name('admin_page_portfolio_update')->middleware('admin:admin');
 
 
 

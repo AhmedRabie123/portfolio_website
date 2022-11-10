@@ -57,6 +57,11 @@ table.t1 tr td {
     height: 200px;
 }
 
+.video-iframe-container1 iframe {
+    width: 100% !important;
+    height: 160px !important;
+}
+
 .bdb1 {border-bottom: 1px solid #d3d3d3;}
 
 table tr td {

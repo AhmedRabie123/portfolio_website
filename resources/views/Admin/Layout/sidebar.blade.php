@@ -64,7 +64,7 @@
 
 
 
-            <li class="nav-item dropdown {{ Request::is('admin/page-service') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
                         Pages</span></a>
                 <ul class="dropdown-menu">
@@ -73,6 +73,11 @@
                             href="{{ route('admin_page_service') }}"><i class="fas fa-angle-right"></i>Services Page
                         </a>
                     </li>
+
+                    <li class="{{ Request::is('admin/page-portfolio') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('admin_page_portfolio') }}"><i class="fas fa-angle-right"></i>Portfolios Page
+                    </a>
+                </li>
 
                 </ul>
             </li>

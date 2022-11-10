@@ -46,7 +46,7 @@
                                             <td>{{ $item->rPortfolioCategory->category_name }}</td>
                                             <td>
                                                 <a href="{{ route('admin_portfolio_photo_gallery_show', $item->id) }}" class="btn btn-success btn-sm w-100-p mb_10">Photo Gallery</a>
-                                                <a href="" class="btn btn-success btn-sm w-100-p">Video Gallery</a>
+                                                <a href="{{ route('admin_portfolio_video_gallery_show', $item->id) }}" class="btn btn-success btn-sm w-100-p">Video Gallery</a>
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_portfolio_edit', $item->id) }}"
