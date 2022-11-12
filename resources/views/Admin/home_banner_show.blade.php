@@ -40,7 +40,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Description</label>
-                                        <textarea type="text" class="form-control snote" name="banner_person_description">{{ $page_data->banner_person_description }}</textarea>
+                                        <textarea type="text" class="form-control editor" name="banner_person_description">{{ $page_data->banner_person_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">

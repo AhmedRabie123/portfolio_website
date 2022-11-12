@@ -34,7 +34,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Description</label>
-                                        <textarea type="text" class="form-control snote" name="about_description">{{ $page_data->about_description }}</textarea>
+                                        <textarea type="text" class="form-control editor" name="about_description">{{ $page_data->about_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">

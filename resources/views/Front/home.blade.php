@@ -1,5 +1,8 @@
 @extends('Front.layout.app')
 
+@section('seo_title'){{ $page_data->seo_title }}@endsection
+@section('seo_meta_description'){{ $page_data->seo_meta_description }}@endsection
+
 @section('main_content')
     <div class="home-banner">
         <div class="container">
@@ -331,7 +334,7 @@
                             @foreach ($portfolio_data as $item)
                                 <div class="filter-item abc{{ $item->portfolio_category_id }}">
                                     <div class="inner">
-                                        <div class="photo"><a href=""><img
+                                        <div class="photo"><a href="{{ route('portfolio_detail', $item->slug) }}"><img
                                                     src="{{ asset('uploads/' . $item->photo) }}" alt=""></a>
                                         </div>
                                         <div class="text">

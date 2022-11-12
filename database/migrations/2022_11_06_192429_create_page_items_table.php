@@ -23,6 +23,12 @@ return new class extends Migration
             $table->string('portfolio_banner');
             $table->string('portfolio_seo_title')->nullable();
             $table->text('portfolio_seo_meta_description')->nullable();
+            $table->string('about_heading');
+            $table->string('about_banner');
+            $table->string('about_photo')->nullable();
+            $table->text('about_description');
+            $table->string('about_seo_title')->nullable();
+            $table->text('about_seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

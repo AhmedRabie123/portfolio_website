@@ -30,7 +30,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label"> SEO Meta Description</label>
-                                       <textarea name="services_seo_meta_description" class="form-control snote" cols="30" rows="10">{{ $page_data->services_seo_meta_description }}</textarea>
+                                       <textarea name="services_seo_meta_description" class="form-control editor" cols="30" rows="10">{{ $page_data->services_seo_meta_description }}</textarea>
                                     </div>
                               
                                     <div class="mb-4">

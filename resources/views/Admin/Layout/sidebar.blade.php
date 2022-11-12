@@ -14,7 +14,7 @@
                     <span>Dashboard</span></a></li>
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') || Request::is('admin/home-portfolio') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') || Request::is('admin/home-portfolio') || Request::is('admin/home-seo') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
@@ -59,12 +59,18 @@
                             Section</a>
                     </li>
 
+                    <li class="{{ Request::is('admin/home-seo') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_home_seo') }}"><i class="fas fa-angle-right"></i>SEO
+                            Section</a>
+                    </li>
+
                 </ul>
             </li>
 
 
 
-            <li class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') ? 'active' : '' }}">
+            <li
+                class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') || Request::is('admin/page-about') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
                         Pages</span></a>
                 <ul class="dropdown-menu">
@@ -75,9 +81,15 @@
                     </li>
 
                     <li class="{{ Request::is('admin/page-portfolio') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('admin_page_portfolio') }}"><i class="fas fa-angle-right"></i>Portfolios Page
-                    </a>
-                </li>
+                            href="{{ route('admin_page_portfolio') }}"><i class="fas fa-angle-right"></i>Portfolios
+                            Page
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/page-about') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_page_about') }}"><i class="fas fa-angle-right"></i>About Page
+                        </a>
+                    </li>
 
                 </ul>
             </li>
@@ -114,21 +126,23 @@
                     data-bs-title="services"><i class="fas fa-hand-point-right"></i>
                     <span>services</span></a></li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/portfolio-category*') || Request::is('admin/portfolio-show') ? 'active' : '' }}">
+            <li
+                class="nav-item dropdown {{ Request::is('admin/portfolio-category*') || Request::is('admin/portfolio-show') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i
                         class="fas fa-hand-point-right"></i><span>Portfolios
                     </span></a>
                 <ul class="dropdown-menu">
 
                     <li class="{{ Request::is('admin/portfolio-category*') ? 'active' : '' }}"><a class="nav-link"
-                            href="{{ route('admin_portfolio_category_show') }}"><i class="fas fa-angle-right"></i>Category
+                            href="{{ route('admin_portfolio_category_show') }}"><i
+                                class="fas fa-angle-right"></i>Category
                         </a>
                     </li>
 
                     <li class="{{ Request::is('admin/portfolio-show') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('admin_portfolio_show') }}"><i class="fas fa-angle-right"></i>Portfolio
-                    </a>
-                </li>
+                            href="{{ route('admin_portfolio_show') }}"><i class="fas fa-angle-right"></i>Portfolio
+                        </a>
+                    </li>
 
                 </ul>
             </li>

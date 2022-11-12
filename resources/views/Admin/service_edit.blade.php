@@ -60,12 +60,12 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Service Short Description</label>
-                                        <textarea name="short_description" class="form-control snote" cols="30" rows="10">{{ $service_single->short_description }}</textarea>
+                                        <textarea name="short_description" class="form-control editor" cols="30" rows="10">{{ $service_single->short_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label">Service Description</label>
-                                        <textarea name="description" class="form-control snote" cols="30" rows="10">{{ $service_single->description }}</textarea>
+                                        <textarea name="description" class="form-control editor" cols="30" rows="10">{{ $service_single->description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">
@@ -80,7 +80,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">SEO Meta Description</label>
-                                        <textarea name="seo_meta_description" class="form-control snote" cols="30" rows="10">{{ $service_single->seo_meta_description }}</textarea>
+                                        <textarea name="seo_meta_description" class="form-control editor" cols="30" rows="10">{{ $service_single->seo_meta_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">

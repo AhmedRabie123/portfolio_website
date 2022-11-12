@@ -32,7 +32,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Testimonial Comment *</label>
-                                        <textarea name="comment" class="form-control snote" cols="30" rows="10"></textarea>
+                                        <textarea name="comment" class="form-control editor" cols="30" rows="10"></textarea>
                                     </div>
 
                                     <div class="mb-4">

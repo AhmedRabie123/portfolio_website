@@ -60,7 +60,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Portfolio Description *</label>
-                                        <textarea name="description" class="form-control snote" cols="30" rows="10">{{ $portfolio_single->description }}</textarea>
+                                        <textarea name="description" class="form-control editor" cols="30" rows="10">{{ $portfolio_single->description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">
@@ -100,7 +100,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">SEO Meta Description</label>
-                                        <textarea name="seo_meta_description" class="form-control snote" cols="30" rows="10">{{ $portfolio_single->seo_meta_description }}</textarea>
+                                        <textarea name="seo_meta_description" class="form-control editor" cols="30" rows="10">{{ $portfolio_single->seo_meta_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">

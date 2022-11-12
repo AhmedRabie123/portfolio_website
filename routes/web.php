@@ -59,6 +59,10 @@ Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('servi
 
 Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolio');
 
+// Portfolio detail page route
+
+Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('portfolio_detail');
+
 
 
 
@@ -222,9 +226,16 @@ Route::get('admin/portfolio-video-delete/{id}', [AdminPortfolioController::class
 Route::get('admin/page-portfolio', [AdminPageController::class, 'portfolios'])->name('admin_page_portfolio')->middleware('admin:admin');
 Route::post('admin/page-portfolio-update', [AdminPageController::class, 'portfolios_update'])->name('admin_page_portfolio_update')->middleware('admin:admin');
 
+// Admin SEO && SEO Meta Description route
 
+Route::get('admin/home-seo', [AdminHomePageController::class, 'seo'])->name('admin_home_seo')->middleware('admin:admin');
+Route::post('admin/home-seo-update', [AdminHomePageController::class, 'seo_update'])->name('admin_home_seo_update')->middleware('admin:admin');
 
+//About Page Route
 
+Route::get('admin/page-about', [AdminPageController::class, 'about'])->name('admin_page_about')->middleware('admin:admin');
+Route::post('admin/page-about-update', [AdminPageController::class, 'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
+Route::get('admin/page-about/photo-delete', [AdminPageController::class, 'about_photo_delete'])->name('admin_page_about_delete')->middleware('admin:admin');
 
 
 

@@ -47,7 +47,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Testimonial Comment *</label>
-                                        <textarea name="comment" class="form-control snote" cols="30" rows="10">{{ $testimonial_single->comment }}</textarea>
+                                        <textarea name="comment" class="form-control editor" cols="30" rows="10">{{ $testimonial_single->comment }}</textarea>
                                     </div>
 
                                     <div class="mb-4">

@@ -86,4 +86,73 @@ class AdminPageController extends Controller
         return redirect()->route('admin_home')->with('success', 'Portfolio Page Updated Successfully');
     }
 
+
+    public function about()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        return view('Admin.page_about', compact('page_data'));
+    }
+
+    public function about_update(Request $request)
+    {
+
+        $page_data = PageItem::where('id', 1)->first();
+
+        $request->validate([
+            'about_heading' => 'required',
+            'about_description' => 'required',
+        ]);
+
+
+        if ($request->hasFile('about_banner')) {
+            $request->validate([
+                'about_banner' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->about_banner)) && $page_data->about_banner != NULL &&  $page_data->about_banner != '') {
+                unlink(public_path('uploads/' . $page_data->about_banner));
+            }
+
+            $ext = $request->file('about_banner')->extension();
+            $final_name = 'banner_about_'. time() . '.' . $ext;
+            $request->file('about_banner')->move(public_path('uploads/'), $final_name);
+            $page_data->about_banner = $final_name;
+        }
+
+        if ($request->hasFile('about_photo')) {
+            $request->validate([
+                'about_photo' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->about_photo)) && $page_data->about_photo != NULL && $page_data->about_photo != '') {
+                unlink(public_path('uploads/' . $page_data->about_photo));
+            }
+
+            $ext = $request->file('about_photo')->extension();
+            $final_name = 'photo_about_'. time() . '.' . $ext;
+            $request->file('about_photo')->move(public_path('uploads/'), $final_name);
+            $page_data->about_photo = $final_name;
+        }
+
+        $page_data->about_heading  =  $request->about_heading;
+        $page_data->about_description  =  $request->about_description;
+        $page_data->about_seo_title  =  $request->about_seo_title;
+        $page_data->about_seo_meta_description  =  $request->about_seo_meta_description;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'About Page Updated Successfully');
+    }
+
+    public function about_photo_delete()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        unlink(public_path('uploads/' . $page_data->about_photo));
+        $page_data->about_photo  = '';
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'About Photo Deleted Successfully');
+
+    }
+
+
 }
