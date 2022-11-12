@@ -6,4 +6,5 @@
 <script src="{{ asset('dist_front/js/filter.min.js') }}"></script>
 <script src="{{ asset('dist_front/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('dist_front/js/wow.min.js') }}"></script>
+<script src="{{ asset('dist_front/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('dist_front/js/custom.js') }}"></script>

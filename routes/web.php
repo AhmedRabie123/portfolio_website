@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ServiceController;
 use App\Http\Controllers\Front\PortfolioController;
+use App\Http\Controllers\Front\ContactController;
 
 
 
@@ -28,6 +29,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPortfolioCategoryController;
 use App\Http\Controllers\Admin\AdminPortfolioController;
+use App\Http\Controllers\Admin\AdminPostCategoryController;
 
 
 
@@ -62,6 +64,11 @@ Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfoli
 // Portfolio detail page route
 
 Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('portfolio_detail');
+
+// Contact page route
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 
 
 
@@ -237,10 +244,24 @@ Route::get('admin/page-about', [AdminPageController::class, 'about'])->name('adm
 Route::post('admin/page-about-update', [AdminPageController::class, 'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
 Route::get('admin/page-about/photo-delete', [AdminPageController::class, 'about_photo_delete'])->name('admin_page_about_delete')->middleware('admin:admin');
 
+//Contact Page Route
 
+Route::get('admin/page-contact', [AdminPageController::class, 'contact'])->name('admin_page_contact')->middleware('admin:admin');
+Route::post('admin/page-contact-update', [AdminPageController::class, 'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
 
+//Blog Route
 
+Route::get('admin/home-blog', [AdminHomePageController::class, 'blog'])->name('admin_home_blog')->middleware('admin:admin');
+Route::post('admin/home-blog-update', [AdminHomePageController::class, 'blog_update'])->name('admin_home_blog_update')->middleware('admin:admin');
 
+// Admin Post category route
+
+Route::get('admin/post-category-show', [AdminPostCategoryController::class, 'index'])->name('admin_post_category_show')->middleware('admin:admin');
+Route::get('admin/post-category-create', [AdminPostCategoryController::class, 'post_category_create'])->name('admin_post_category_create')->middleware('admin:admin');
+Route::post('admin/post-category-submit', [AdminPostCategoryController::class, 'post_category_store'])->name('admin_post_category_submit')->middleware('admin:admin');
+Route::get('admin/post-category-edit/{id}', [AdminPostCategoryController::class, 'post_category_edit'])->name('admin_post_category_edit')->middleware('admin:admin');
+Route::post('admin/post-category-update/{id}', [AdminPostCategoryController::class, 'post_category_update'])->name('admin_post_category_update')->middleware('admin:admin');
+Route::get('admin/post-category-delete/{id}', [AdminPostCategoryController::class, 'post_category_delete'])->name('admin_post_category_delete')->middleware('admin:admin');
 
 
 

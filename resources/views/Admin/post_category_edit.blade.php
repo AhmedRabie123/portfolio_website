@@ -1,9 +1,9 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Edit Prtofolio Category')
+@section('heading', 'Edit Post Category')
 
 @section('button')
-    <a href="{{ route('admin_portfolio_category_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
+    <a href="{{ route('admin_post_category_show') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
 @endsection
 
 @section('main_content')
@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin_portfolio_category_update', $category_single->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin_post_category_update', $category_single->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
@@ -23,6 +23,11 @@
                                     <div class="mb-4">
                                         <label class="form-label">category Name *</label>
                                         <input type="text" class="form-control" name="category_name" value="{{ $category_single->category_name }}">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">category Slug *</label>
+                                        <input type="text" class="form-control" name="category_slug" value="{{ $category_single->category_slug }}">
                                     </div>
 
                                     <div class="mb-4">

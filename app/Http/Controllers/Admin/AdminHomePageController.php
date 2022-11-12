@@ -302,6 +302,26 @@ class AdminHomePageController extends Controller
         return redirect()->route('admin_home')->with('success', 'Portfolio Updated Successfully');
     }
 
+    public function blog()
+    {
+        $page_data = HomePageItem::where('id', 1)->first();
+        return view('Admin.home_blog_show', compact('page_data'));
+    }
+
+    public function blog_update(Request $request)
+    {
+
+        $page_data = HomePageItem::where('id', 1)->first();
+
+
+        $page_data->blog_subtitle  =  $request->blog_subtitle;
+        $page_data->blog_title  =  $request->blog_title;
+        $page_data->blog_status  =  $request->blog_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Blog Updated Successfully');
+    }
+
     public function seo()
     {
         $page_data = HomePageItem::where('id', 1)->first();
