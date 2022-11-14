@@ -22,7 +22,7 @@
                     <a class="nav-link {{ Request::is('portfolios') ? "active" : "" }}" href="{{ route('portfolio') }}">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
+                    <a class="nav-link {{ Request::is('posts') ? "active" : "" }}" href="{{ route('blog') }}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('contact') ? "active" : "" }}" href="{{ route('contact') }}">Contact</a>

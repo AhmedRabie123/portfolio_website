@@ -31,6 +31,16 @@
                                     </div>
 
                                     <div class="mb-4">
+                                        <label class="form-label">category SEO Title </label>
+                                        <input type="text" class="form-control" name="category_seo_title" value="">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">category SEO Meta Description </label>
+                                        <textarea name="category_seo_meta_description"  class="form-control editor" cols="30" rows="10"></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
                                         <label class="form-label"></label>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>

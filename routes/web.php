@@ -9,8 +9,7 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\ServiceController;
 use App\Http\Controllers\Front\PortfolioController;
 use App\Http\Controllers\Front\ContactController;
-
-
+use App\Http\Controllers\Front\PostController;
 
 
 
@@ -30,6 +29,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPortfolioCategoryController;
 use App\Http\Controllers\Admin\AdminPortfolioController;
 use App\Http\Controllers\Admin\AdminPostCategoryController;
+use App\Http\Controllers\Admin\AdminPostController;
 
 
 
@@ -70,7 +70,14 @@ Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('p
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 
+// Post page route
 
+Route::get('/posts', [PostController::class, 'index'])->name('blog');
+
+// Post detail page route
+
+Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
+Route::get('/category/{slug}', [PostController::class, 'category'])->name('category');
 
 
 
@@ -228,7 +235,7 @@ Route::get('admin/portfolio/video-gallery/show/{id}', [AdminPortfolioController:
 Route::post('admin/portfolio_video_gallery-submit', [AdminPortfolioController::class, 'video_gallery_submit'])->name('admin_portfolio_video_gallery_submit')->middleware('admin:admin');
 Route::get('admin/portfolio-video-delete/{id}', [AdminPortfolioController::class, 'video_gallery_delete'])->name('admin_portfolio_video_gallery_delete')->middleware('admin:admin');
 
-//Service Page Route
+//portfolio Page Route
 
 Route::get('admin/page-portfolio', [AdminPageController::class, 'portfolios'])->name('admin_page_portfolio')->middleware('admin:admin');
 Route::post('admin/page-portfolio-update', [AdminPageController::class, 'portfolios_update'])->name('admin_page_portfolio_update')->middleware('admin:admin');
@@ -263,11 +270,34 @@ Route::get('admin/post-category-edit/{id}', [AdminPostCategoryController::class,
 Route::post('admin/post-category-update/{id}', [AdminPostCategoryController::class, 'post_category_update'])->name('admin_post_category_update')->middleware('admin:admin');
 Route::get('admin/post-category-delete/{id}', [AdminPostCategoryController::class, 'post_category_delete'])->name('admin_post_category_delete')->middleware('admin:admin');
 
+// Admin post route
 
+Route::get('admin/post-show', [AdminPostController::class, 'index'])->name('admin_post_show')->middleware('admin:admin');
+Route::get('admin/post-create', [AdminPostController::class, 'post_create'])->name('admin_post_create')->middleware('admin:admin');
+Route::post('admin/post-submit', [AdminPostController::class, 'post_store'])->name('admin_post_submit')->middleware('admin:admin');
+Route::get('admin/post-edit/{id}', [AdminPostController::class, 'post_edit'])->name('admin_post_edit')->middleware('admin:admin');
+Route::post('admin/post-update/{id}', [AdminPostController::class, 'post_update'])->name('admin_post_update')->middleware('admin:admin');
+Route::get('admin/post-delete/{id}', [AdminPostController::class, 'post_delete'])->name('admin_post_delete')->middleware('admin:admin');
 
+//Blog Page Route
 
+Route::get('admin/page-blog', [AdminPageController::class, 'blog'])->name('admin_page_blog')->middleware('admin:admin');
+Route::post('admin/page-blog-update', [AdminPageController::class, 'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
 
+//Category Page Route
 
+Route::get('admin/page-category', [AdminPageController::class, 'category'])->name('admin_page_category')->middleware('admin:admin');
+Route::post('admin/page-category-update', [AdminPageController::class, 'category_update'])->name('admin_page_category_update')->middleware('admin:admin');
+
+//Archive Page Route
+
+Route::get('admin/page-archive', [AdminPageController::class, 'archive'])->name('admin_page_archive')->middleware('admin:admin');
+Route::post('admin/page-archive-update', [AdminPageController::class, 'archive_update'])->name('admin_page_archive_update')->middleware('admin:admin');
+
+//Search Page Route
+
+Route::get('admin/page-search', [AdminPageController::class, 'search'])->name('admin_page_search')->middleware('admin:admin');
+Route::post('admin/page-search-update', [AdminPageController::class, 'search_update'])->name('admin_page_search_update')->middleware('admin:admin');
 
 
 

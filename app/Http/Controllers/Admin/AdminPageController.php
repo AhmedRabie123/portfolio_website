@@ -202,5 +202,139 @@ class AdminPageController extends Controller
         return redirect()->route('admin_home')->with('success', 'Contact Page Updated Successfully');
     }
 
+    public function blog()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        return view('Admin.page_blog', compact('page_data'));
+    }
+
+    public function blog_update(Request $request)
+    {
+
+        $page_data = PageItem::where('id', 1)->first();
+
+        $request->validate([
+            'blog_heading' => 'required'
+        ]);
+
+
+        if ($request->hasFile('blog_banner')) {
+            $request->validate([
+                'blog_banner' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->blog_banner)) && $page_data->blog_banner != NULL) {
+                unlink(public_path('uploads/' . $page_data->blog_banner));
+            }
+
+            $ext = $request->file('blog_banner')->extension();
+            $final_name = 'banner_blog_'. time() . '.' . $ext;
+            $request->file('blog_banner')->move(public_path('uploads/'), $final_name);
+            $page_data->blog_banner = $final_name;
+        }
+
+        $page_data->blog_heading  =  $request->blog_heading;
+        $page_data->blog_seo_title  =  $request->blog_seo_title;
+        $page_data->blog_seo_meta_description  =  $request->blog_seo_meta_description;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Blog Page Updated Successfully');
+    }
+
+    public function category()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        return view('Admin.page_category', compact('page_data'));
+    }
+
+    public function category_update(Request $request)
+    {
+
+        $page_data = PageItem::where('id', 1)->first();
+
+
+        if ($request->hasFile('category_banner')) {
+            $request->validate([
+                'category_banner' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->category_banner)) && $page_data->category_banner != NULL) {
+                unlink(public_path('uploads/' . $page_data->category_banner));
+            }
+
+            $ext = $request->file('category_banner')->extension();
+            $final_name = 'banner_category_'. time() . '.' . $ext;
+            $request->file('category_banner')->move(public_path('uploads/'), $final_name);
+            $page_data->category_banner = $final_name;
+        }
+
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Category Page Updated Successfully');
+    }
+
+    public function archive()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        return view('Admin.page_archive', compact('page_data'));
+    }
+
+    public function archive_update(Request $request)
+    {
+
+        $page_data = PageItem::where('id', 1)->first();
+
+
+        if ($request->hasFile('archive_banner')) {
+            $request->validate([
+                'archive_banner' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->archive_banner)) && $page_data->archive_banner != NULL) {
+                unlink(public_path('uploads/' . $page_data->archive_banner));
+            }
+
+            $ext = $request->file('archive_banner')->extension();
+            $final_name = 'banner_archive_'. time() . '.' . $ext;
+            $request->file('archive_banner')->move(public_path('uploads/'), $final_name);
+            $page_data->archive_banner = $final_name;
+        }
+
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Archive Page Updated Successfully');
+    }
+
+    public function search()
+    {
+        $page_data = PageItem::where('id', 1)->first();
+        return view('Admin.page_search', compact('page_data'));
+    }
+
+    public function search_update(Request $request)
+    {
+
+        $page_data = PageItem::where('id', 1)->first();
+
+
+        if ($request->hasFile('search_banner')) {
+            $request->validate([
+                'search_banner' => 'image|mimes:jpg,jpeg,png,svg,gif'
+            ]);
+
+            if (file_exists(public_path('uploads/' . $page_data->search_banner)) && $page_data->search_banner != NULL) {
+                unlink(public_path('uploads/' . $page_data->search_banner));
+            }
+
+            $ext = $request->file('search_banner')->extension();
+            $final_name = 'banner_search_'. time() . '.' . $ext;
+            $request->file('search_banner')->move(public_path('uploads/'), $final_name);
+            $page_data->search_banner = $final_name;
+        }
+
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Search Page Updated Successfully');
+    }
 
 }

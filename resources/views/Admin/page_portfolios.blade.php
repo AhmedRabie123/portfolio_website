@@ -17,7 +17,7 @@
                                 <div class="col-md-12">
 
                                     <div class="mb-4">
-                                        <label class="form-label">Portfolios Heading</label>
+                                        <label class="form-label">Portfolios Heading *</label>
                                         <input type="text" class="form-control" name="portfolios_heading"
                                             value="{{ $page_data->portfolios_heading }}">
                                     </div>

@@ -37,6 +37,13 @@ return new class extends Migration
             $table->text('contact_map_iframe');
             $table->string('contact_seo_title')->nullable();
             $table->text('contact_seo_meta_description')->nullable();
+            $table->string('blog_heading');
+            $table->string('blog_banner');
+            $table->string('blog_seo_title')->nullable();
+            $table->text('blog_seo_meta_description')->nullable();
+            $table->string('category_banner');
+            $table->string('archive_banner');
+            $table->string('search_banner');
             $table->timestamps();
         });
     }

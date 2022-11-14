@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\PostCategory;
+use App\Models\Post;
 
 class AdminPostCategoryController extends Controller
 {
@@ -32,6 +33,8 @@ class AdminPostCategoryController extends Controller
 
         $category_post->category_name = $request->category_name;
         $category_post->category_slug = $request->category_slug;
+        $category_post->category_seo_title = $request->category_seo_title;
+        $category_post->category_seo_meta_description = $request->category_seo_meta_description;
         $category_post->save();
 
         return redirect()->route('admin_post_category_show')->with('success', 'Category Saved Successfully.');
@@ -56,6 +59,8 @@ class AdminPostCategoryController extends Controller
 
         $category_post->category_name = $request->category_name;
         $category_post->category_slug = $request->category_slug;
+        $category_post->category_seo_title = $request->category_seo_title;
+        $category_post->category_seo_meta_description = $request->category_seo_meta_description;
         $category_post->update();
 
         return redirect()->route('admin_post_category_show')->with('success', 'Category Updated Successfully.');
@@ -64,16 +69,13 @@ class AdminPostCategoryController extends Controller
     public function post_category_delete($id)
     {
         $category_single = PostCategory::where('id', $id)->first();
-        $category_single->delete();
-        // $count = Post::where('post_category_id', $id)->count();
+        $count = Post::where('post_category_id', $id)->count();
  
-        // if($count == 0){
-        //     $category_single->delete();
-        // }else{
-        //     return redirect()->back()->with('error', 'You Can  Not delete this portfolio category, because there is one or more portfolio under this.');
-        // }
-
-       
+        if($count == 0){
+            $category_single->delete();
+        }else{
+            return redirect()->back()->with('error', 'You Can  Not delete this Post category, because there is one or more post under this.');
+        }
 
         return redirect()->route('admin_post_category_show')->with('success', 'Category Deleted Successfully.');
     }

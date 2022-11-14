@@ -409,60 +409,26 @@
                             <h3>{{ $page_data->blog_title }}</h3>
                         @endif
                     </div>
-                    <div class="col-md-4 wow fadeInUp">
-                        <div class="item">
-                            <div class="photo">
-                                <img src="{{ asset('dist_front/images/post-1.jpg') }}" alt="">
-                            </div>
-                            <div class="text">
-                                <h3>Blog Post Title</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, sit vidit soluta assueverit ei. Pro ut case abhorreant
-                                    persequeris. Mei at adhuc invenire. Id purto eloquentiam duo, ne erroribus rationibus
-                                    mel.
-                                </p>
-                                <div class="button">
-                                    <a href="blog-detail.html" class="btn btn-primary">Read More</a>
+
+                    @foreach ($post_data as $item)
+                        <div class="col-md-4 wow fadeInUp">
+                            <div class="item">
+                                <div class="photo">
+                                    <img src="{{ asset('uploads/' . $item->photo) }}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>{{ $item->title }}</h3>
+                                    <p>
+                                        {!! nl2br($item->short_description) !!}
+                                    </p>
+                                    <div class="button">
+                                        <a href="{{ route('post', $item->slug) }}" class="btn btn-primary">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 wow fadeInUp">
-                        <div class="item">
-                            <div class="photo">
-                                <img src="{{ asset('dist_front/images/post-2.jpg') }}" alt="">
-                            </div>
-                            <div class="text">
-                                <h3>Blog Post Title</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, sit vidit soluta assueverit ei. Pro ut case abhorreant
-                                    persequeris. Mei at adhuc invenire. Id purto eloquentiam duo, ne erroribus rationibus
-                                    mel.
-                                </p>
-                                <div class="button">
-                                    <a href="blog-detail.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeInUp">
-                        <div class="item">
-                            <div class="photo">
-                                <img src="{{ asset('dist_front/images/post-3.jpg') }}" alt="">
-                            </div>
-                            <div class="text">
-                                <h3>Blog Post Title</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, sit vidit soluta assueverit ei. Pro ut case abhorreant
-                                    persequeris. Mei at adhuc invenire. Id purto eloquentiam duo, ne erroribus rationibus
-                                    mel.
-                                </p>
-                                <div class="button">
-                                    <a href="blog-detail.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

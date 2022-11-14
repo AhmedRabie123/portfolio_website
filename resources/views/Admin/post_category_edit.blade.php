@@ -14,7 +14,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin_post_category_update', $category_single->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin_post_category_update', $category_single->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
 
@@ -22,18 +23,32 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">category Name *</label>
-                                        <input type="text" class="form-control" name="category_name" value="{{ $category_single->category_name }}">
+                                        <input type="text" class="form-control" name="category_name"
+                                            value="{{ $category_single->category_name }}">
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label">category Slug *</label>
-                                        <input type="text" class="form-control" name="category_slug" value="{{ $category_single->category_slug }}">
+                                        <input type="text" class="form-control" name="category_slug"
+                                            value="{{ $category_single->category_slug }}">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Category SEO Title </label>
+                                        <input type="text" class="form-control" name="category_seo_title"
+                                            value="{{ $category_single->category_seo_title }}">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Category SEO Meta Description</label>
+                                        <textarea name="category_seo_meta_description" class="form-control editor" cols="30" rows="10">{{ $category_single->category_seo_meta_description }}</textarea>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label"></label>
                                         <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
