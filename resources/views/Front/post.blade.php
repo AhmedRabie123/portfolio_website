@@ -92,9 +92,9 @@
                                             solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
                                             invenire.
                                         </div>
-                                        <div class="reply">
+                                        {{-- <div class="reply">
                                             <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -112,9 +112,9 @@
                                             solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
                                             invenire.
                                         </div>
-                                        <div class="reply">
+                                        {{-- <div class="reply">
                                             <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -169,26 +169,29 @@
                             <div class="mt_40"></div>
 
                             <h2>Leave Your Comment</h2>
+                            <form action="{{ route('comment_submit') }}" method="post">
+                                @csrf
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="email" placeholder="Email Address">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Email Address">
-                                    </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" rows="3" placeholder="Comment"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
 
                         </div>
                     @endif
@@ -201,9 +204,11 @@
                         <div class="widget">
                             <h2>Search</h2>
                             <div class="search">
-                                <form class="row g-3" action="" method="post">
+                                <form class="row g-3" action="{{ route('search') }}" method="post">
+                                    @csrf
                                     <div class="col-auto">
-                                        <input type="text" class="form-control" placeholder="Search Anything ...">
+                                        <input type="text" class="form-control" name="search_text"
+                                            placeholder="Search Anything ...">
                                     </div>
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary mb-3">Search</button>
@@ -236,12 +241,40 @@
                         <div class="widget">
                             <h2>Archives</h2>
                             <ul>
-                                <li><a href="archive.html">September 2022 (7)</a></li>
-                                <li><a href="archive.html">August 2022 (14)</a></li>
-                                <li><a href="archive.html">July 2022 (9)</a></li>
-                                <li><a href="archive.html">June 2022 (4)</a></li>
-                                <li><a href="archive.html">May 2022 (18)</a></li>
-                                <li><a href="archive.html">April 2022 (11)</a></li>
+                                @foreach ($archives as $item)
+                                    @php
+                                        if ($item->month == '01') {
+                                            $month = 'January';
+                                        } elseif ($item->month == '02') {
+                                            $month = 'February';
+                                        } elseif ($item->month == '03') {
+                                            $month = 'March';
+                                        } elseif ($item->month == '04') {
+                                            $month = 'April';
+                                        } elseif ($item->month == '05') {
+                                            $month = 'May';
+                                        } elseif ($item->month == '06') {
+                                            $month = 'June';
+                                        } elseif ($item->month == '07') {
+                                            $month = 'July';
+                                        } elseif ($item->month == '08') {
+                                            $month = 'August';
+                                        } elseif ($item->month == '09') {
+                                            $month = 'September';
+                                        } elseif ($item->month == '10') {
+                                            $month = 'October';
+                                        } elseif ($item->month == '11') {
+                                            $month = 'November';
+                                        } elseif ($item->month == '12') {
+                                            $month = 'December';
+                                        }
+                                    @endphp
+                                    <li><a href="{{ route('archive', [$item->month, $item->year]) }}">{{ $month }}
+                                            {{ $item->year }}
+                                            ({{ $item->total_post }})
+                                        </a></li>
+                                @endforeach
+
                             </ul>
                         </div>
                     </div>

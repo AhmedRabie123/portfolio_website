@@ -300,6 +300,8 @@ class AdminPageController extends Controller
             $page_data->archive_banner = $final_name;
         }
 
+        $page_data->archive_seo_title  =  $request->archive_seo_title;
+        $page_data->archive_seo_meta_description  =  $request->archive_seo_meta_description;
         $page_data->update();
 
         return redirect()->route('admin_home')->with('success', 'Archive Page Updated Successfully');
@@ -332,6 +334,8 @@ class AdminPageController extends Controller
             $page_data->search_banner = $final_name;
         }
 
+        $page_data->search_seo_title  =  $request->search_seo_title;
+        $page_data->search_seo_meta_description  =  $request->search_seo_meta_description;
         $page_data->update();
 
         return redirect()->route('admin_home')->with('success', 'Search Page Updated Successfully');

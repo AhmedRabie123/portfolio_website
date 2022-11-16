@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\ServiceController;
 use App\Http\Controllers\Front\PortfolioController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\PostController;
+use App\Http\Controllers\Front\CommentController;
 
 
 
@@ -78,6 +79,19 @@ Route::get('/posts', [PostController::class, 'index'])->name('blog');
 
 Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('/category/{slug}', [PostController::class, 'category'])->name('category');
+
+// Archive detail page route
+
+Route::get('/archive/{month}/{year}', [PostController::class, 'archive'])->name('archive');
+
+// Search page route
+
+Route::post('/search', [PostController::class, 'search'])->name('search');
+
+// Comment page route
+
+Route::post('/comment-submit', [CommentController::class, 'comment_submit'])->name('comment_submit');
+
 
 
 
@@ -278,6 +292,14 @@ Route::post('admin/post-submit', [AdminPostController::class, 'post_store'])->na
 Route::get('admin/post-edit/{id}', [AdminPostController::class, 'post_edit'])->name('admin_post_edit')->middleware('admin:admin');
 Route::post('admin/post-update/{id}', [AdminPostController::class, 'post_update'])->name('admin_post_update')->middleware('admin:admin');
 Route::get('admin/post-delete/{id}', [AdminPostController::class, 'post_delete'])->name('admin_post_delete')->middleware('admin:admin');
+
+// Admin post Comment route
+
+Route::get('admin/comment-pending', [AdminPostController::class, 'comment_pending'])->name('admin_comment_pending')->middleware('admin:admin');
+Route::get('admin/comment/make-approved/{id}', [AdminPostController::class, 'comment_make_approved'])->name('admin_comment_make_approved')->middleware('admin:admin');
+Route::get('admin/comment-delete/{id}', [AdminPostCategoryController::class, 'comment_delete'])->name('admin_comment_delete')->middleware('admin:admin');
+
+
 
 //Blog Page Route
 

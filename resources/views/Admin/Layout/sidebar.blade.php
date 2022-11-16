@@ -179,7 +179,7 @@
 
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/post-category*') || Request::is('admin/post-show') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/post-category*') || Request::is('admin/post-show') || Request::is('admin/comment-pending') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog
                     </span></a>
                 <ul class="dropdown-menu">
@@ -193,6 +193,11 @@
                             href="{{ route('admin_post_show') }}"><i class="fas fa-angle-right"></i>Posts
                         </a>
                     </li>
+
+                    <li class="{{ Request::is('admin/comment-pending') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('admin_comment_pending') }}"><i class="fas fa-angle-right"></i>Pending Comments
+                    </a>
+                </li>
 
                 </ul>
             </li>

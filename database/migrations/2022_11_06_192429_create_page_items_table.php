@@ -43,7 +43,11 @@ return new class extends Migration
             $table->text('blog_seo_meta_description')->nullable();
             $table->string('category_banner');
             $table->string('archive_banner');
+            $table->string('archive_seo_title')->nullable();
+            $table->text('archive_seo_meta_description')->nullable();
             $table->string('search_banner');
+            $table->string('search_seo_title')->nullable();
+            $table->text('search_seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

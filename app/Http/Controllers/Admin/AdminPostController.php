@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Archive;
+use App\Models\Comment;
+use App\Models\Reply;
 
 class AdminPostController extends Controller
 {
@@ -58,6 +61,29 @@ class AdminPostController extends Controller
         $post->seo_title = $request->seo_title;
         $post->seo_meta_description = $request->seo_meta_description;
         $post->save();
+ 
+        $current_month = date('m');
+        $current_year = date('Y');
+
+        $total = Archive::where('month', $current_month)->where('year', $current_year)->count();
+
+        if($total > 0){
+           $archive_data = Archive::where('month', $current_month)->where('year', $current_year)->first();
+           //dd($archive_data->total_post);
+           $total_post = $archive_data->total_post;
+           $total_post = $total_post+1;
+           $archive_data->total_post = $total_post;
+           $archive_data->update();
+        }else{
+            $archive_data = new Archive();
+
+            $archive_data->month = $current_month;
+            $archive_data->year = $current_year;
+            $archive_data->total_post = 1;
+            $archive_data->save();
+        }
+
+ 
 
         return redirect()->route('admin_post_show')->with('success', 'Post Saved Successfully.');
 
@@ -137,12 +163,42 @@ class AdminPostController extends Controller
     public function post_delete($id)
     {
         $post_single = Post::where('id', $id)->first();
+        $current_month = $post_single->created_at->format('m');
+        $current_year = $post_single->created_at->format('Y');
         unlink(public_path('uploads/' . $post_single->photo));
         unlink(public_path('uploads/' . $post_single->banner));
         $post_single->delete();
-        
-        return redirect()->route('admin_post_show')->with('success', 'Post Deleted Successfully.');
 
+        $archive_data = Archive::where('month', $current_month)->where('year', $current_year)->first();
+        $total_post = $archive_data->total_post;
+        $total_post = $total_post-1;
+        $archive_data->total_post = $total_post;
+        $archive_data->update();
+
+       return redirect()->route('admin_post_show')->with('success', 'Post Deleted Successfully.');
+
+    }
+
+
+    // Comment Section Start Here
+
+    public function comment_pending()
+    {
+        $pending_comments = Comment::with('rPost')->where('person_status', 0)->get();
+        return view('Admin.comment_pending', compact('pending_comments'));
+    }
+
+    public function comment_make_approved($id)
+    {
+
+    }
+
+    public function comment_delete($id)
+    {
+      $comment_single = Comment::where('id', $id)->first();
+      $comment_single->delete();
+
+      return redirect()->back()->with('success', 'Comment Deleted Successfully.');
     }
 
 }

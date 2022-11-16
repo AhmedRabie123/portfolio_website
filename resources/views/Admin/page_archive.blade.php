@@ -17,6 +17,17 @@
                                 <div class="col-md-12">
                               
                                     <div class="mb-4">
+                                        <label class="form-label"> SEO Title</label>
+                                        <input type="text" class="form-control" name="archive_seo_title"
+                                            value="{{ $page_data->archive_seo_title }}">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label"> SEO Meta Description</label>
+                                       <textarea name="archive_seo_meta_description" class="form-control editor" cols="30" rows="10">{{ $page_data->archive_seo_meta_description }}</textarea>
+                                    </div>
+
+                                    <div class="mb-4">
                                         <label class="form-label">Existing Banner</label>
                                         <div>
                                             <img src="{{ asset('uploads/' . $page_data->archive_banner) }}" alt=""
