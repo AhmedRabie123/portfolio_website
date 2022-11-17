@@ -180,16 +180,41 @@ class AdminPostController extends Controller
     }
 
 
-    // Comment Section Start Here
+    /*
+    
+    Comment Section Start Here
+
+    */
 
     public function comment_pending()
     {
-        $pending_comments = Comment::with('rPost')->where('person_status', 0)->get();
+        $pending_comments = Comment::with('rPost')->where('person_status', 0)->orderBy('id', 'desc')->get();
         return view('Admin.comment_pending', compact('pending_comments'));
     }
 
     public function comment_make_approved($id)
     {
+        $comment_single = Comment::where('id', $id)->first();
+        $comment_single->person_status = 1;
+        $comment_single->update();
+
+        return redirect()->back()->with('success', 'Comment Is Approved Successfully.');
+
+    }
+
+    public function comment_approved()
+    {
+        $approved_comments = Comment::with('rPost')->where('person_status', 1)->orderBy('id', 'desc')->get();
+        return view('Admin.comment_approved', compact('approved_comments'));
+    }
+
+    public function comment_make_pending($id)
+    {
+        $comment_single = Comment::where('id', $id)->first();
+        $comment_single->person_status = 0;
+        $comment_single->update();
+
+        return redirect()->back()->with('success', 'Comment Is Pending Successfully.');
 
     }
 
@@ -199,6 +224,54 @@ class AdminPostController extends Controller
       $comment_single->delete();
 
       return redirect()->back()->with('success', 'Comment Deleted Successfully.');
+    }
+
+
+    
+    /*
+    
+    Replies Section Start Here
+
+    */
+
+    public function reply_pending()
+    {
+        $pending_replies = Reply::with('rPost', 'rComment')->where('person_status', 0)->orderBy('id', 'desc')->get();
+        return view('Admin.reply_pending', compact('pending_replies'));
+    }
+
+    public function reply_make_approved($id)
+    {
+        $reply_single = Reply::where('id', $id)->first();
+        $reply_single->person_status = 1;
+        $reply_single->update();
+
+        return redirect()->back()->with('success', 'Reply Is Approved Successfully.');
+
+    }
+
+    public function reply_approved()
+    {
+        $approved_replies = Reply::with('rPost', 'rComment')->where('person_status', 1)->orderBy('id', 'desc')->get();
+        return view('Admin.reply_approved', compact('approved_replies'));
+    }
+
+    public function reply_make_pending($id)
+    {
+        $reply_single = Reply::where('id', $id)->first();
+        $reply_single->person_status = 0;
+        $reply_single->update();
+
+        return redirect()->back()->with('success', 'Reply Is Pending Successfully.');
+
+    }
+
+    public function reply_delete($id)
+    {
+      $reply_single = Reply::where('id', $id)->first();
+      $reply_single->delete();
+
+      return redirect()->back()->with('success', 'Reply Deleted Successfully.');
     }
 
 }

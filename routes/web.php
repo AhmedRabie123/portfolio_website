@@ -88,11 +88,21 @@ Route::get('/archive/{month}/{year}', [PostController::class, 'archive'])->name(
 
 Route::post('/search', [PostController::class, 'search'])->name('search');
 
-// Comment page route
+// Comment page route Submit
 
 Route::post('/comment-submit', [CommentController::class, 'comment_submit'])->name('comment_submit');
 
+// Reply page route Submit
 
+Route::post('/reply-submit', [CommentController::class, 'reply_submit'])->name('reply_submit');
+
+// Admin Comment page route Submit
+
+Route::post('/admin/comment-submit', [CommentController::class, 'admin_comment_submit'])->name('admin_comment_submit');
+
+// Admin Reply page route Submit
+
+Route::post('/admin/reply-submit', [CommentController::class, 'admin_reply_submit'])->name('admin_reply_submit');
 
 
 /* Admin route */
@@ -297,9 +307,17 @@ Route::get('admin/post-delete/{id}', [AdminPostController::class, 'post_delete']
 
 Route::get('admin/comment-pending', [AdminPostController::class, 'comment_pending'])->name('admin_comment_pending')->middleware('admin:admin');
 Route::get('admin/comment/make-approved/{id}', [AdminPostController::class, 'comment_make_approved'])->name('admin_comment_make_approved')->middleware('admin:admin');
-Route::get('admin/comment-delete/{id}', [AdminPostCategoryController::class, 'comment_delete'])->name('admin_comment_delete')->middleware('admin:admin');
+Route::get('admin/comment-approved', [AdminPostController::class, 'comment_approved'])->name('admin_comment_approved')->middleware('admin:admin');
+Route::get('admin/comment/make-pending/{id}', [AdminPostController::class, 'comment_make_pending'])->name('admin_comment_make_pending')->middleware('admin:admin');
+Route::get('admin/comment-delete/{id}', [AdminPostController::class, 'comment_delete'])->name('admin_comment_delete')->middleware('admin:admin');
 
+// Admin post Replies route
 
+Route::get('admin/reply-pending', [AdminPostController::class, 'reply_pending'])->name('admin_reply_pending')->middleware('admin:admin');
+Route::get('admin/reply/make-approved/{id}', [AdminPostController::class, 'reply_make_approved'])->name('admin_reply_make_approved')->middleware('admin:admin');
+Route::get('admin/reply-approved', [AdminPostController::class, 'reply_approved'])->name('admin_reply_approved')->middleware('admin:admin');
+Route::get('admin/reply/make-pending/{id}', [AdminPostController::class, 'reply_make_pending'])->name('admin_reply_make_pending')->middleware('admin:admin');
+Route::get('admin/reply-delete/{id}', [AdminPostController::class, 'reply_delete'])->name('admin_reply_delete')->middleware('admin:admin');
 
 //Blog Page Route
 

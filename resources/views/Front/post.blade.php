@@ -7,6 +7,14 @@
     {{ $post_detail->seo_meta_description }}
 @endsection
 
+@section('open_graph_data')
+    <meta property="og:title" content="{{ $post_detail->title }}">
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="{{ route('post', $post_detail->slug) }}">
+    <meta property="og:description" content="{{ $post_detail->short_description }}">
+    <meta property="og:image" content="{{ asset('uploads/' . $post_detail->photo) }}">
+@endsection
+
 @section('main_content')
     <div class="page-banner" style="background-image: url({{ asset('uploads/' . $post_detail->banner) }})">
         <div class="container">
@@ -28,7 +36,7 @@
                         <img src="{{ asset('uploads/' . $post_detail->photo) }}" alt="">
                     </div>
                     <div class="sub d-flex justify-content-start">
-                        <div class="author"><span>By:</span> {{ Auth::guard('admin')->user()->name }}</div>
+                        <div class="author"><span>By:</span>Admin</div>
                         <div class="dash"> - </div>
                         <div class="date"><span>On:</span> {{ $post_detail->created_at->format('M d, Y') }}</div>
                         <div class="dash"> - </div>
@@ -54,144 +62,189 @@
                     @if ($post_detail->show_comment == 'Yes')
                         <div class="comment">
 
-                            <h2>6 Comments</h2>
+                            <h2>{{ $total_comments }} Comments</h2>
 
-                            <div class="comment-section">
+                            @if ($total_comments == 0)
+                                <span class="text-danger">No Comments Is Found!</span>
+                            @endif
 
-                                <div class="comment-box d-flex justify-content-start">
-                                    <div class="left">
-                                        <img src="images/t1.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <div class="name">Patrick Smith</div>
-                                        <div class="date">September 25, 2022</div>
-                                        <div class="text">
-                                            Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus
-                                            platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur.
-                                            Mei et
-                                            solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
-                                            invenire.
+                            @foreach ($comments as $item)
+                                <div class="comment-section">
+                                    <div
+                                        class="comment-box d-flex justify-content-start @if ($item->person_type == 'Admin') admin-comment-box @endif">
+                                        <div class="left">
+                                            @php
+                                                $grav_url = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($item->person_email))) . '?s=128';
+                                                
+                                            @endphp
+                                            <img src="{{ $grav_url }}" alt="">
+
                                         </div>
-                                        <div class="reply">
-                                            <a href=""><i class="fas fa-reply"></i> Reply</a>
+                                        <div class="right">
+                                            <div class="name">{{ $item->person_name }}</div>
+                                            <div class="date">
+                                                {{ $item->created_at->format('F') .
+                                                    ' ' .
+                                                    $item->created_at->format('d') .
+                                                    ', ' .
+                                                    $item->created_at->format('Y') }}
+                                            </div>
+                                            <div class="text">
+                                                {!! nl2br($item->person_comment) !!}
+                                            </div>
+                                            <div class="reply">
+                                                <a href="" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{ $item->id }}"><i
+                                                        class="fas fa-reply"></i> Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    @foreach ($item->rReply as $item2)
+                                        @if ($item2->person_status == 0)
+                                            @continue
+                                        @endif
+
+                                        <div
+                                            class="comment-box reply-box d-flex justify-content-start @if ($item2->person_type == 'Admin') admin-comment-box @endif">
+                                            <div class="left">
+                                                @php
+                                                    $grav_url = 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($item2->person_email))) . '?s=128';
+                                                    
+                                                @endphp
+                                                <img src="{{ $grav_url }}" alt="">
+                                            </div>
+                                            <div class="right">
+                                                <div class="name">{{ $item2->person_name }}</div>
+                                                <div class="date">
+                                                    {{ $item2->created_at->format('F') .
+                                                        ' ' .
+                                                        $item2->created_at->format('d') .
+                                                        ', ' .
+                                                        $item2->created_at->format('Y') }}
+                                                </div>
+                                                <div class="text">
+                                                    {!! nl2br($item2->person_comment) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Reply Here</h1>
+                                                <button type="button" class="btn btn-close text-white"
+                                                    data-bs-dismiss="modal" aria-label="Close">X</button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                @if (Auth::guard('admin')->user())
+                                                    <form action="{{ route('admin_reply_submit') }}" method="post">
+                                                        @csrf
+
+                                                        <input type="hidden" name="post_id"
+                                                            value="{{ $post_detail->id }}">
+                                                        <input type="hidden" name="comment_id"
+                                                            value="{{ $item->id }}">
+
+                                                        <div class="mb-3">
+                                                            <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('reply_submit') }}" method="post">
+                                                        @csrf
+
+                                                        <input type="hidden" name="post_id"
+                                                            value="{{ $post_detail->id }}">
+                                                        <input type="hidden" name="comment_id"
+                                                            value="{{ $item->id }}">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                        name="name" placeholder="Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                        name="email" placeholder="Email Address">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                @endif
+
+
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
 
-                                <div class="comment-box reply-box d-flex justify-content-start">
-                                    <div class="left">
-                                        <img src="images/t2.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <div class="name">John Doe</div>
-                                        <div class="date">September 25, 2022</div>
-                                        <div class="text">
-                                            Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus
-                                            platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur.
-                                            Mei et
-                                            solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
-                                            invenire.
-                                        </div>
-                                        {{-- <div class="reply">
-                                            <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div> --}}
-                                    </div>
-                                </div>
-
-                                <div class="comment-box reply-box d-flex justify-content-start">
-                                    <div class="left">
-                                        <img src="images/t3.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <div class="name">Brent Smith</div>
-                                        <div class="date">September 25, 2022</div>
-                                        <div class="text">
-                                            Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus
-                                            platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur.
-                                            Mei et
-                                            solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
-                                            invenire.
-                                        </div>
-                                        {{-- <div class="reply">
-                                            <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div> --}}
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="comment-section">
-                                <div class="comment-box d-flex justify-content-start">
-                                    <div class="left">
-                                        <img src="images/t2.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <div class="name">John Doe</div>
-                                        <div class="date">September 25, 2022</div>
-                                        <div class="text">
-                                            Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus
-                                            platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur.
-                                            Mei et
-                                            solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
-                                            invenire.
-                                        </div>
-                                        <div class="reply">
-                                            <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="comment-section">
-                                <div class="comment-box d-flex justify-content-start">
-                                    <div class="left">
-                                        <img src="images/t3.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <div class="name">John Doe</div>
-                                        <div class="date">September 25, 2022</div>
-                                        <div class="text">
-                                            Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus
-                                            platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur.
-                                            Mei et
-                                            solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud
-                                            invenire.
-                                        </div>
-                                        <div class="reply">
-                                            <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="mt_40"></div>
 
                             <h2>Leave Your Comment</h2>
-                            <form action="{{ route('comment_submit') }}" method="post">
-                                @csrf
 
-                                <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" name="name" placeholder="Name">
+                            @if (Auth::guard('admin')->user())
+                                <form action="{{ route('admin_comment_submit') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                    <div class="mb-3">
+                                        <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            @else
+                                <form action="{{ route('comment_submit') }}" method="post">
+                                    @csrf
+
+                                    <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" name="name"
+                                                    placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" name="email"
+                                                    placeholder="Email Address">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" name="email" placeholder="Email Address">
-                                        </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" name="comment" rows="3" placeholder="Comment"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            @endif
+
 
                         </div>
                     @endif

@@ -10,7 +10,7 @@
 
     <meta name="description" value="@yield('seo_meta_description')">
 
-
+    @yield('open_graph_data')
 
     @include('Front.layout.styles')
 

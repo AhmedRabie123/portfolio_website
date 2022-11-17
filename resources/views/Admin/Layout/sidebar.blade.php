@@ -75,7 +75,7 @@
 
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') || Request::is('admin/page-about') || Request::is('admin/page-contact') || Request::is('admin/page-blog')|| Request::is('admin/page-category') || Request::is('admin/page-archive') || Request::is('admin/page-search') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') || Request::is('admin/page-about') || Request::is('admin/page-contact') || Request::is('admin/page-blog') || Request::is('admin/page-category') || Request::is('admin/page-archive') || Request::is('admin/page-search') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
                         Pages</span></a>
                 <ul class="dropdown-menu">
@@ -179,7 +179,7 @@
 
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/post-category*') || Request::is('admin/post-show') || Request::is('admin/comment-pending') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/post-category*') || Request::is('admin/post-show') || Request::is('admin/comment-pending') || Request::is('admin/comment-approved') || Request::is('admin/reply-pending') || Request::is('admin/reply-approved') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog
                     </span></a>
                 <ul class="dropdown-menu">
@@ -195,9 +195,28 @@
                     </li>
 
                     <li class="{{ Request::is('admin/comment-pending') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('admin_comment_pending') }}"><i class="fas fa-angle-right"></i>Pending Comments
-                    </a>
-                </li>
+                            href="{{ route('admin_comment_pending') }}"><i class="fas fa-angle-right"></i>Pending
+                            Comments
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/comment-approved') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_comment_approved') }}"><i class="fas fa-angle-right"></i>Approved
+                            Comments
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/reply-pending') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_reply_pending') }}"><i class="fas fa-angle-right"></i>Pending
+                            Replies
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/reply-approved') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_reply_approved') }}"><i class="fas fa-angle-right"></i>Approved
+                            Replies
+                        </a>
+                    </li>
 
                 </ul>
             </li>
