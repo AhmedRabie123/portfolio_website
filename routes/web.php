@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\AdminPortfolioCategoryController;
 use App\Http\Controllers\Admin\AdminPortfolioController;
 use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminSettingController;
 
 
 
@@ -339,5 +340,8 @@ Route::post('admin/page-archive-update', [AdminPageController::class, 'archive_u
 Route::get('admin/page-search', [AdminPageController::class, 'search'])->name('admin_page_search')->middleware('admin:admin');
 Route::post('admin/page-search-update', [AdminPageController::class, 'search_update'])->name('admin_page_search_update')->middleware('admin:admin');
 
+// Admin Setting route
 
+Route::get('admin/setting', [AdminSettingController::class, 'index'])->name('admin_setting')->middleware('admin:admin');
+Route::post('admin/setting-update', [AdminSettingController::class, 'setting_update'])->name('admin_setting_update')->middleware('admin:admin');
 
