@@ -10,17 +10,17 @@
         <ul class="sidebar-menu">
             <li class="{{ Request::is('admin/home') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_home') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Dashboard"><i class="fas fa-hand-point-right"></i>
+                    data-bs-title="Dashboard"><i class="fas fa-home"></i>
                     <span>Dashboard</span></a></li>
 
             <li class="{{ Request::is('admin/setting') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_setting') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Setting"><i class="fas fa-hand-point-right"></i>
+                    data-bs-title="Setting"><i class="fas fa-cog"></i>
                     <span>Setting</span></a></li>
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/home-banner') || Request::is('admin/home-about') || Request::is('admin/home-skill') || Request::is('admin/home-qualification') || Request::is('admin/home-counter') || Request::is('admin/home-testimonials') || Request::is('admin/home-client') || Request::is('admin/home-service') || Request::is('admin/home-portfolio') || Request::is('admin/home-blog') || Request::is('admin/home-seo') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Home
+                <a href="#" class="nav-link has-dropdown"><i class="fab fa-font-awesome-flag"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/home-banner') ? 'active' : '' }}"><a class="nav-link"
@@ -81,7 +81,7 @@
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/page-service') || Request::is('admin/page-portfolio') || Request::is('admin/page-about') || Request::is('admin/page-contact') || Request::is('admin/page-blog') || Request::is('admin/page-category') || Request::is('admin/page-archive') || Request::is('admin/page-search') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Other
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-sticky-note"></i><span>Other
                         Pages</span></a>
                 <ul class="dropdown-menu">
 
@@ -132,39 +132,38 @@
 
             <li class="{{ Request::is('admin/skill*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_skill_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Skills"><i class="fas fa-hand-point-right"></i> <span>Skills</span></a></li>
+                    data-bs-title="Skills"><i class="fas fa-sliders-h"></i> <span>Skills</span></a></li>
 
             <li class="{{ Request::is('admin/education*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_education_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Educations"><i class="fas fa-hand-point-right"></i> <span>Educations</span></a>
+                    data-bs-title="Educations"><i class="fas fa-user-graduate"></i> <span>Educations</span></a>
             </li>
 
             <li class="{{ Request::is('admin/experience*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_experience_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Experience"><i class="fas fa-hand-point-right"></i> <span>Experience</span></a>
+                    data-bs-title="Experience"><i class="fas fa-book"></i> <span>Experience</span></a>
             </li>
 
 
             <li class="{{ Request::is('admin/testimonial*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_testimonial_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Testimonials"><i class="fas fa-hand-point-right"></i>
+                    data-bs-title="Testimonials"><i class="fas fa-certificate"></i>
                     <span>Testimonials</span></a></li>
 
             <li class="{{ Request::is('admin/client*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_client_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="Clients"><i class="fas fa-hand-point-right"></i>
+                    data-bs-title="Clients"><i class="fas fa-users"></i>
                     <span>Clients</span></a></li>
 
 
             <li class="{{ Request::is('admin/service*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_service_show') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="services"><i class="fas fa-hand-point-right"></i>
+                    data-bs-title="services"><i class="fab fa-servicestack"></i>
                     <span>services</span></a></li>
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/portfolio-category*') || Request::is('admin/portfolio-show') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>Portfolios
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-newspaper"></i><span>Portfolios
                     </span></a>
                 <ul class="dropdown-menu">
 
@@ -185,7 +184,7 @@
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/post-category*') || Request::is('admin/post-show') || Request::is('admin/comment-pending') || Request::is('admin/comment-approved') || Request::is('admin/reply-pending') || Request::is('admin/reply-approved') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Blog
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-blog"></i><span>Blog
                     </span></a>
                 <ul class="dropdown-menu">
 

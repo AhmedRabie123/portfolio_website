@@ -138,7 +138,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label">Theme Color *</label>
-                                        <input type="text" class="form-control" data-jscolor="{}" name="theme_color"
+                                        <input type="text" class="form-control jscolor"  name="theme_color"
                                             value="{{ $all_setting->theme_color }}">
                                     </div>
 
@@ -158,3 +158,5 @@
 
 
 @endsection
+
+{{-- data-jscolor="{}" --}}

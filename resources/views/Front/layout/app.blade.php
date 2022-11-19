@@ -21,7 +21,7 @@
 
     <style>
         nav .nav-item .nav-link.active,
-        nav .nav-item .nav-link:hover ,
+        nav .nav-item .nav-link:hover,
         .home-banner .left .button a,
         .home-about .right h3,
         .home-about .contact-info i,
@@ -44,14 +44,14 @@
         .comment h2,
         .comment .comment-box .right .reply a,
         .contact .item .icon {
-        
-            color: {{ $global_setting_data->theme_color }};
+
+            color: {{ $global_setting_data->theme_color }} !important;
         }
 
 
         .home-banner,
         .home-about .social ul li,
-        .home-skill .progress-bar ,
+        .home-skill .progress-bar,
         .home-qualification .item .v-line,
         .service .item .button a,
         .portfolio .filter ul li,
@@ -60,20 +60,25 @@
         .scrollup i,
         .sidebar .widget .search button,
         .comment button,
-        .contact .form-map button{
+        .contact .form-map button {
+
             background: {{ $global_setting_data->theme_color }};
         }
 
+        .home-banner .left span {
+            background: {{ $global_setting_data->theme_color }} !important;
+        }
+
         .testimonial-carousel .owl-dot.active span,
-        .client-carousel .owl-dot.active span{
-            background: {{ $global_setting_data->theme_color }}!important;
+        .client-carousel .owl-dot.active span {
+
+            background: {{ $global_setting_data->theme_color }} !important;
         }
 
-        .sidebar .widget .search button{
-            border-color: {{ $global_setting_data->theme_color }};
+        .sidebar .widget .search button {
+
+            border-color: {{ $global_setting_data->theme_color }} !important;
         }
-
-
     </style>
 
 </head>
